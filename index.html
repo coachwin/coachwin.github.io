@@ -125,7 +125,10 @@ footer{background:var(--dark);color:#8a8a8a;text-align:center;font-size:13px;pad
 .field{display:grid;gap:6px;margin-bottom:16px}
 .field label{font-weight:600;font-size:15px}
 .field input{font:500 17px Inter,sans-serif;padding:15px 16px;border:2px solid var(--line);border-radius:14px;background:#fff;color:var(--ink)}
-.field input:focus{outline:none;border-color:var(--accent)}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--accent)}
+.field textarea{font:500 17px Inter,sans-serif;padding:15px 16px;border:2px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);resize:vertical;line-height:1.5}
+.yn{grid-template-columns:1fr 1fr}
+.yn .opt{text-align:center;font-weight:700}
 .err{color:var(--bad);font-size:14px;min-height:20px;margin-bottom:8px}
 .small{font-size:13px;color:var(--ink2)}
 .fade{animation:fade .3s ease}
@@ -349,9 +352,10 @@ const TEXT = {
     finalH:"Find your weak side in 2 minutes.", finalP:"Free. No signup to start. Your result is shown right away.",
     footer:"This quiz is for general education, not medical advice.",
     back:"← Back", close:"Close ✕", yourResult:"Your result",
-    next:"Next →", toldH:"What you told me you struggle with",
+    next:"Next →", yes:"Yes", no:"No", optional:"optional", eText:"Please fill this in so I can understand you better.",
+    toldH:"What you told me you struggle with",
     toldP:"These are usually symptoms. On the call we find what's causing them, so you're not fighting them with willpower alone.",
-    cTag:"Your result is ready", cH:"Where should I send your result?", cSub:"You'll see your result straight away on the next screen.",
+    cTag:"Your result is ready", cH:"Fill in your details", cSub:"Your result will be sent to you here. You'll also see it straight away on the next screen.",
     cName:"Name", cWa:"WhatsApp number", cEmail:"Email", cGo:"Show my result →",
     cPrivacy:"I'll only use your details to follow up about your result. No spam.",
     eName:"Please enter your name.", eWa:"Please enter a valid WhatsApp number.", eEmail:"Please enter a valid email.",
@@ -399,9 +403,10 @@ const TEXT = {
     finalH:"Cari bahagian lemah anda dalam 2 minit.", finalP:"Percuma. Tak perlu daftar untuk mula. Keputusan terus keluar.",
     footer:"Kuiz ini untuk pendidikan umum, bukan nasihat perubatan.",
     back:"← Kembali", close:"Tutup ✕", yourResult:"Keputusan anda",
-    next:"Seterusnya →", toldH:"Apa yang anda kata anda hadapi",
+    next:"Seterusnya →", yes:"Ya", no:"Tidak", optional:"tidak wajib", eText:"Sila isi supaya saya lebih faham keadaan anda.",
+    toldH:"Apa yang anda kata anda hadapi",
     toldP:"Ini biasanya cuma simptom. Dalam panggilan kita cari puncanya, supaya anda tak perlu lawan semua ini dengan semangat sahaja.",
-    cTag:"Keputusan anda dah siap", cH:"Ke mana saya patut hantar keputusan anda?", cSub:"Keputusan akan terus keluar di skrin seterusnya.",
+    cTag:"Keputusan anda dah siap", cH:"Isi maklumat anda", cSub:"Keputusan anda akan dihantar ke sini. Ia juga akan terus keluar di skrin seterusnya.",
     cName:"Nama", cWa:"Nombor WhatsApp", cEmail:"E-mel", cGo:"Tunjuk keputusan saya →",
     cPrivacy:"Maklumat anda hanya digunakan untuk susulan tentang keputusan anda. Tiada spam.",
     eName:"Sila masukkan nama anda.", eWa:"Sila masukkan nombor WhatsApp yang sah.", eEmail:"Sila masukkan e-mel yang sah.",
@@ -438,10 +443,9 @@ const QUESTIONS = [
   /* ---- 1. Goals & current situation ---- */
   { id:"goal", tag:"goals",
     q:{en:"What's your main fitness goal right now?", ms:"Apa matlamat fitness utama anda sekarang?"},
-    a:[{en:"Lose weight and belly fat",ms:"Turunkan berat dan lemak perut"},
-       {en:"Lose fat and build a toned, fit body",ms:"Buang lemak dan bina badan yang tegap"},
-       {en:"Get healthier and have more energy",ms:"Jadi lebih sihat dan bertenaga"},
-       {en:"Improve a health issue (sugar, cholesterol, blood pressure)",ms:"Baiki masalah kesihatan (gula, kolesterol, darah tinggi)"}] },
+    a:[{en:"Lose weight",ms:"Turunkan berat badan"},
+       {en:"Gain weight",ms:"Naikkan berat badan"},
+       {en:"Improve my health",ms:"Tingkatkan kesihatan"}] },
   { id:"tried", tag:"goals", type:"multi", none:4,
     q:{en:"What have you tried before to reach this goal?", ms:"Apa yang anda pernah cuba untuk capai matlamat ini?"},
     hint:{en:"Pick all that apply", ms:"Pilih semua yang berkenaan"},
@@ -450,21 +454,18 @@ const QUESTIONS = [
        {en:"Slimming products, pills or detox teas",ms:"Produk kurus, pil atau teh detoks"},
        {en:"A personal trainer or coach",ms:"Personal trainer atau coach"},
        {en:"Nothing yet. This is my first real try",ms:"Belum lagi. Ini cubaan pertama saya"}] },
-  { id:"why", tag:"goals",
+  { id:"why", tag:"goals", type:"text",
     q:{en:"Why is it important for you to reach this goal now?", ms:"Kenapa penting untuk anda capai matlamat ini sekarang?"},
-    a:[{en:"My health. Test results or family history worry me",ms:"Kesihatan. Keputusan ujian atau sejarah keluarga membimbangkan saya"},
-       {en:"I want to feel confident in my body again",ms:"Saya nak yakin semula dengan badan saya"},
-       {en:"A big event is coming (wedding, trip, raya)",ms:"Ada majlis besar nanti (kahwin, bercuti, raya)"},
-       {en:"I want more energy for work and family",ms:"Saya nak lebih bertenaga untuk kerja dan keluarga"},
-       {en:"I'm tired of starting over again and again",ms:"Saya penat asyik mula semula"}] },
-
+    fields:[{k:"why", long:true, req:true,
+      ph:{en:"e.g. My doctor said my sugar is high, and I want to keep up with my kids",ms:"cth. Doktor kata gula saya tinggi, dan saya nak larat main dengan anak-anak"}}] },
   /* ---- 2. Lifestyle & habits ---- */
-  { id:"meals", pillar:"nutrition",
-    q:{en:"Walk me through a normal day of eating. Which sounds most like you?", ms:"Ceritakan hari biasa anda. Waktu makan anda paling macam mana?"},
-    a:[[{en:"I skip breakfast or lunch, then eat a lot at night",ms:"Saya skip sarapan atau tengah hari, lepas tu makan banyak waktu malam"},0],
-       [{en:"Mostly eating out or takeaway, whatever is quickest",ms:"Kebanyakannya makan luar atau bungkus, apa yang paling cepat"},1],
-       [{en:"3 meals a day, but I don't really plan what I eat",ms:"Makan 3 kali sehari, tapi tak rancang sangat apa yang dimakan"},2],
-       [{en:"Planned meals, with protein and vegetables in most of them",ms:"Makan terancang, ada protein dan sayur dalam kebanyakan hidangan"},3]] },
+  { id:"meals", tag:"lifestyle", type:"text",
+    q:{en:"Walk me through a normal day of eating.", ms:"Ceritakan apa yang anda makan pada hari biasa."},
+    fields:[
+      {k:"breakfast", req:true, l:{en:"Breakfast",ms:"Sarapan"}, ph:{en:"e.g. nasi lemak + teh tarik, or skip",ms:"cth. nasi lemak + teh tarik, atau skip"}},
+      {k:"lunch",     req:true, l:{en:"Lunch",ms:"Makan tengah hari"}, ph:{en:"e.g. chicken rice from the mamak",ms:"cth. nasi ayam di kedai mamak"}},
+      {k:"dinner",    req:true, l:{en:"Dinner",ms:"Makan malam"}, ph:{en:"e.g. home-cooked rice, fish and vegetables",ms:"cth. nasi, ikan dan sayur masak di rumah"}},
+      {k:"snacks",    req:false, l:{en:"Snacks",ms:"Snek"}, ph:{en:"e.g. biscuits at 4pm, Maggi at night",ms:"cth. biskut pukul 4, Maggi waktu malam"}}] },
   { id:"snacks", pillar:"nutrition",
     q:{en:"How often do you have snacks or sweet drinks (teh tarik, Milo, boba, soft drinks)?", ms:"Berapa kerap anda makan snek atau minum air manis (teh tarik, Milo, boba, air bergas)?"},
     a:[[{en:"Several times every day",ms:"Beberapa kali setiap hari"},0],
@@ -485,15 +486,13 @@ const QUESTIONS = [
        [{en:"3 or more times a week",ms:"3 kali atau lebih seminggu"},3]] },
   { id:"work", tag:"lifestyle",
     q:{en:"What's your work schedule like?", ms:"Macam mana jadual kerja anda?"},
-    a:[{en:"Office hours (about 9 to 6)",ms:"Waktu pejabat (lebih kurang 9 hingga 6)"},
-       {en:"Long hours or frequent overtime",ms:"Waktu kerja panjang atau kerap OT"},
-       {en:"Shift work or irregular hours",ms:"Kerja syif atau waktu tak tetap"},
-       {en:"Flexible or self-employed",ms:"Fleksibel atau bekerja sendiri"},
-       {en:"Student or not working right now",ms:"Pelajar atau tak bekerja sekarang"}] },
-  { id:"habits", tag:"lifestyle",
+    a:[{en:"9 to 5 job",ms:"Kerja 9 hingga 5"},
+       {en:"Shift work (rotational, night or permanent shift)",ms:"Kerja syif (syif bergilir, syif malam atau syif tetap)"},
+       {en:"Flexible hours",ms:"Waktu fleksibel"}] },
+  { id:"habits", tag:"lifestyle", type:"yesno",
     q:{en:"Do you drink alcohol, smoke or vape?", ms:"Adakah anda minum alkohol, merokok atau vape?"},
-    a:[{en:"None of these",ms:"Tiada"},{en:"Alcohol, now and then",ms:"Alkohol, sekali-sekala"},
-       {en:"I smoke or vape",ms:"Saya merokok atau vape"},{en:"More than one of these",ms:"Lebih daripada satu"}] },
+    which:{en:"Which ones?",ms:"Yang mana?"},
+    a:[{en:"Alcohol",ms:"Alkohol"},{en:"Smoke",ms:"Merokok"},{en:"Vape",ms:"Vape"}] },
   { id:"sleep", pillar:"mindset",
     q:{en:"How many hours do you usually sleep a night?", ms:"Berapa jam anda biasanya tidur setiap malam?"},
     a:[[{en:"Less than 5 hours",ms:"Kurang 5 jam"},0],
@@ -658,6 +657,8 @@ function renderQuestion(q){
   const tag = q.pillar ? `${PILLARS[q.pillar].emoji} ${pname(q.pillar)}` : L(TAGS[q.tag]);
   let html = `<div class="fade"><div class="qtag">${tag} · ${step+1}/${TOTAL}</div><h2 class="display qtitle">${L(q.q)}</h2>`;
   if(q.type === "multi") return renderMulti(q, html);
+  if(q.type === "text") return renderText(q, html);
+  if(q.type === "yesno") return renderYesNo(q, html);
   if(q.type === "scale"){
     html += `<div class="opts scale">` + Array.from({length:10},(_,i)=>`<button class="opt${answers[q.id]===i+1?" sel":""}" data-v="${i+1}">${i+1}</button>`).join("") +
             `</div><div class="scale-lbl"><span>${L(q.lo)}</span><span>${L(q.hi)}</span></div>`;
@@ -670,6 +671,49 @@ function renderQuestion(q){
     if(step === Math.floor(QUESTIONS.length/2)) send("halfway", {});
     setTimeout(() => { step++; render(); }, 180);
   });
+}
+
+function nextStep(){ if(step === Math.floor(QUESTIONS.length/2)) send("halfway", {}); step++; render(); }
+
+// typed answers: answers[q.id] is { fieldKey: "what they typed" }
+const drafts = {};   // typed text kept if they switch language mid-question
+function renderText(q, html){
+  const prev = drafts[q.id] || answers[q.id] || {};
+  html += q.fields.map(f => `<div class="field">${f.l ? `<label for="t-${f.k}">${L(f.l)}${f.req ? "" : ` <span class="small">(${T().optional})</span>`}</label>` : ""}` +
+    (f.long ? `<textarea id="t-${f.k}" rows="4" maxlength="500" placeholder="${L(f.ph)}"></textarea>`
+            : `<input id="t-${f.k}" maxlength="200" placeholder="${L(f.ph)}">`) + `</div>`).join("");
+  html += `<div class="err" id="t-err"></div><button class="btn" id="text-go" style="width:100%">${T().next}</button></div>`;
+  $("stage").innerHTML = html;
+  q.fields.forEach(f => $("t-"+f.k).value = prev[f.k] || "");
+  $("t-"+q.fields[0].k).focus();
+  q.fields.forEach(f => $("t-"+f.k).oninput = () => { drafts[q.id] = drafts[q.id] || {}; q.fields.forEach(g => drafts[q.id][g.k] = $("t-"+g.k).value); });
+  $("text-go").onclick = () => {
+    const v = {}; q.fields.forEach(f => v[f.k] = $("t-"+f.k).value.trim());
+    if(q.fields.some(f => f.req && v[f.k].length < 2)) return $("t-err").textContent = T().eText;
+    answers[q.id] = v; nextStep();
+  };
+}
+
+// yes / no, and if yes, which ones: answers[q.id] is a list of option numbers (empty list = "No")
+function renderYesNo(q, html){
+  const prev = answers[q.id], sel = new Set(prev || []);
+  let choice = prev === undefined ? null : prev.length > 0;   // null = not answered yet
+  html += `<div class="opts yn"><button class="opt" data-yn="1">${T().yes}</button><button class="opt" data-yn="0">${T().no}</button></div>
+    <div id="yn-which" style="display:none"><div class="grp">${L(q.which)}</div><div class="opts">` +
+    q.a.map((a,i) => `<button class="opt chk" data-v="${i}">${L(a)}</button>`).join("") +
+    `</div><button class="btn" id="yn-go" style="width:100%;margin-top:16px">${T().next}</button></div></div>`;
+  $("stage").innerHTML = html;
+  const sync = () => {
+    $("stage").querySelectorAll("[data-yn]").forEach(b => b.classList.toggle("sel", choice !== null && (b.dataset.yn === "1") === choice));
+    $("yn-which").style.display = choice ? "" : "none";
+    $("stage").querySelectorAll("[data-v]").forEach(b => b.classList.toggle("sel", sel.has(+b.dataset.v)));
+    $("yn-go").disabled = !sel.size; $("yn-go").style.opacity = sel.size ? 1 : .4;
+  };
+  $("stage").querySelector('[data-yn="0"]').onclick = () => { choice = false; sel.clear(); answers[q.id] = []; sync(); setTimeout(nextStep, 180); };
+  $("stage").querySelector('[data-yn="1"]').onclick = () => { choice = true; sync(); };
+  $("stage").querySelectorAll("[data-v]").forEach(b => b.onclick = () => { const v = +b.dataset.v; sel.has(v) ? sel.delete(v) : sel.add(v); sync(); });
+  $("yn-go").onclick = () => { if(!sel.size) return; answers[q.id] = [...sel].sort((a,b)=>a-b); nextStep(); };
+  sync();
 }
 
 // "pick all that apply" questions: answers[q.id] is a list of option numbers
@@ -759,6 +803,9 @@ function answerEN(id){
   const q = QUESTIONS.find(x => x.id === id), v = answers[id];
   if(q.type === "scale") return v + "/10";
   if(q.type === "multi") return v.map(i => q.a[i].en).join("; ");
+  if(q.type === "yesno") return v.length ? "Yes: " + v.map(i => q.a[i].en).join(", ") : "No";
+  if(q.type === "text") return q.fields.length === 1 ? v[q.fields[0].k]
+    : q.fields.map(f => `${f.l.en}: ${v[f.k] || "-"}`).join("; ");
   const a = q.a[v]; return (Array.isArray(a) ? a[0] : a).en;
 }
 
@@ -775,7 +822,7 @@ function renderResult(){
     send("lead", row);
     $("app").scrollTop = 0;
   }
-  const summary = `Quiz (${LANG.toUpperCase()}): goal: ${answerEN("goal")} | weakest: ${PILLARS[weakest].name.en} | Nutrition ${pct.nutrition}% Workout ${pct.exercise}% Mindset ${pct.mindset}% | struggles: ${answerEN("struggles")} | tried: ${answerEN("tried")} | sleep ${answerEN("sleep")}, stress ${answerEN("stress")} | work: ${answerEN("work")} | ${answerEN("habits")} | why now: ${answerEN("why")} | start: ${answerEN("start")} | WhatsApp ${lead.wa}`;
+  const summary = `Quiz (${LANG.toUpperCase()}): goal: ${answerEN("goal")} | weakest: ${PILLARS[weakest].name.en} | Nutrition ${pct.nutrition}% Workout ${pct.exercise}% Mindset ${pct.mindset}% | struggles: ${answerEN("struggles")} | tried: ${answerEN("tried")} | sleep ${answerEN("sleep")}, stress ${answerEN("stress")} | work: ${answerEN("work")} | alcohol/smoke/vape: ${answerEN("habits")} | why now: ${answerEN("why")} | start: ${answerEN("start")} | WhatsApp ${lead.wa}`;
   const sq = QUESTIONS.find(q => q.id === "struggles");
   const told = (answers.struggles || []).map(i => `<span class="tag-chip">${PILLARS[sq.a[i].p].emoji} ${L(sq.a[i])}</span>`).join("");
 
