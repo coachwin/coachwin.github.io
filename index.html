@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weight Loss Quiz</title>
+<meta name="description" content="Why can't you lose weight? Take the 2-minute quiz and find the weak side of your Weight Loss Triangle. Kenapa berat anda tak turun? Jawab kuiz 2 minit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16201b; --ink2:#4a5650; --bg:#faf7f2; --card:#ffffff; --line:#e7e1d7;
+  --accent:#ff5a36; --accent-ink:#ffffff; --good:#1f9d6b; --mid:#e9a514; --bad:#e2412b;
+  --dark:#12201a; --tint:#fff1ec;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;font-size:16px;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.display{font-family:"Bricolage Grotesque",Inter,sans-serif;font-weight:800;letter-spacing:-.02em;line-height:1.05}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:16px 28px;font:700 17px Inter,sans-serif;cursor:pointer;text-decoration:none;box-shadow:0 8px 24px -8px rgba(255,90,54,.6);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:none;border:2px solid var(--ink)}
+.eyebrow{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent)}
+section{padding:72px 0}
+h2.display{font-size:clamp(30px,5vw,46px);margin:10px 0 16px}
+.lead{font-size:18px;color:var(--ink2);max-width:640px}
+
+/* language toggle */
+.lang{display:inline-flex;border:1.5px solid currentColor;border-radius:999px;overflow:hidden;font:700 13px Inter,sans-serif}
+.lang button{background:none;border:0;color:inherit;font:inherit;padding:6px 12px;cursor:pointer;opacity:.7}
+.lang button.on{background:var(--accent);color:#fff;opacity:1}
+
+/* hero */
+.hero{background:var(--dark);color:#fff;padding:28px 0 64px;overflow:hidden}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:48px}
+.nav-r{display:flex;align-items:center;gap:18px}
+.brand{font:800 20px "Bricolage Grotesque",sans-serif}
+.brand span{color:var(--accent)}
+.nav a{color:#fff;font-weight:600;text-decoration:none;font-size:15px;opacity:.85}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(40px,7vw,72px);margin:14px 0 18px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{font-size:19px;color:#c9d3ce;max-width:520px;margin-bottom:28px}
+.ticks{list-style:none;margin-top:22px;display:grid;gap:8px;color:#c9d3ce;font-size:15px}
+.ticks li::before{content:"✓";color:var(--accent);font-weight:800;margin-right:10px}
+.hero-photo{aspect-ratio:4/5;border-radius:24px;background:#22342b center/cover;position:relative;overflow:hidden}
+.ph{display:flex;align-items:center;justify-content:center;text-align:center;color:#8aa197;font-size:14px;padding:20px;border:2px dashed #3a5146;border-radius:24px;height:100%}
+
+/* triangle explainer */
+.tri-explain{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.pillar-cards{display:grid;gap:14px;margin-top:24px}
+.pc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.pc b{display:block;font-size:17px;margin-bottom:2px}
+.pc span{color:var(--ink2);font-size:15px}
+
+/* results */
+.results{background:#fff}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.gallery figure{border-radius:18px;overflow:hidden;background:var(--bg);aspect-ratio:4/5;border:1px solid var(--line)}
+.gallery img{width:100%;height:100%;object-fit:cover}
+.gallery .ph{border-color:var(--line);color:#9a958c;border-radius:18px}
+
+/* about */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ba figure{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:3/4;background:#e9e3d8}
+.ba img{width:100%;height:100%;object-fit:cover}
+.ba figcaption{position:absolute;left:10px;bottom:10px;background:var(--ink);color:#fff;font:800 13px Inter,sans-serif;letter-spacing:.1em;padding:6px 10px;border-radius:8px}
+.ba figcaption.after{background:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 10px;text-align:center}
+.stat b{display:block;font:800 26px "Bricolage Grotesque",Inter,sans-serif;color:var(--accent);line-height:1.1}
+.stat span{font-size:13px;color:var(--ink2)}
+.story p{color:var(--ink2);font-size:17px;margin-bottom:14px}
+.story p:first-child{color:var(--ink);font-size:19px;font-weight:600}
+.story blockquote{border-left:4px solid var(--accent);padding:4px 0 4px 16px;margin:18px 0;font:800 22px "Bricolage Grotesque",Inter,sans-serif;color:var(--ink)}
+
+/* faq */
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{font-weight:700;font-size:17px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--accent);font-size:22px;line-height:1}
+details[open] summary::after{content:"−"}
+details p{color:var(--ink2);margin-top:10px}
+
+.final{background:var(--dark);color:#fff;text-align:center}
+.final p{color:#c9d3ce;margin:0 auto 28px;max-width:520px;font-size:18px}
+footer{background:var(--dark);color:#7f9188;text-align:center;font-size:13px;padding:0 20px 32px}
+.social{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.social a{display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font:600 15px Inter,sans-serif;border:1.5px solid #3a5146;border-radius:999px;padding:10px 18px}
+.social a:hover{border-color:var(--accent);color:var(--accent)}
+
+/* quiz overlay */
+#app{position:fixed;inset:0;background:var(--bg);z-index:50;overflow-y:auto;display:none}
+#app.open{display:block}
+.app-top{position:sticky;top:0;background:var(--bg);z-index:2;padding:14px 20px 10px;max-width:640px;margin:0 auto}
+.app-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.app-bar .lang{color:var(--ink2)}
+.icon-btn{background:none;border:0;font:600 15px Inter,sans-serif;color:var(--ink2);cursor:pointer;padding:6px 0}
+.prog{height:6px;background:var(--line);border-radius:6px;overflow:hidden}
+.prog span{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.stage{max-width:640px;margin:0 auto;padding:16px 20px 60px}
+.qtag{font-size:13px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.1em}
+.qtitle{font-size:clamp(24px,4.5vw,32px);margin:10px 0 24px}
+.qtitle span{color:var(--accent)}
+.opts{display:grid;gap:12px}
+.opt{text-align:left;background:var(--card);border:2px solid var(--line);border-radius:16px;padding:18px 20px;font:500 17px Inter,sans-serif;color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s}
+.opt:hover{border-color:var(--accent)}
+.opt.sel{border-color:var(--accent);background:var(--tint)}
+.scale{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
+.scale .opt{padding:16px 0;text-align:center;font-weight:700}
+.scale-lbl{display:flex;justify-content:space-between;font-size:13px;color:var(--ink2);margin-top:8px}
+.field{display:grid;gap:6px;margin-bottom:16px}
+.field label{font-weight:600;font-size:15px}
+.field input{font:500 17px Inter,sans-serif;padding:15px 16px;border:2px solid var(--line);border-radius:14px;background:#fff;color:var(--ink)}
+.field input:focus{outline:none;border-color:var(--accent)}
+.err{color:var(--bad);font-size:14px;min-height:20px;margin-bottom:8px}
+.small{font-size:13px;color:var(--ink2)}
+.fade{animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* result */
+.r-card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;margin-bottom:18px}
+.r-card h3{font-size:20px;margin-bottom:10px}
+.tri-wrap{max-width:360px;margin:6px auto 4px}
+.bars{display:grid;gap:12px;margin-top:10px}
+.bar-top{display:flex;justify-content:space-between;font-weight:700;font-size:15px;margin-bottom:5px}
+.bar{height:10px;border-radius:10px;background:var(--line);overflow:hidden}
+.bar span{display:block;height:100%;border-radius:10px;width:0;transition:width .8s ease}
+.weak-box{background:var(--tint);border-left:4px solid var(--accent);border-radius:10px;padding:14px 16px;margin-top:16px}
+.roots{list-style:none;display:grid;gap:10px;margin-top:12px}
+.roots li{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:var(--bg)}
+.roots li.locked span{filter:blur(5px);user-select:none}
+.roots li i{font-style:normal;flex:none}
+.tip{background:#eef8f3;border-left:4px solid var(--good);border-radius:10px;padding:14px 16px}
+#cal{min-width:280px;height:700px;border-radius:16px;overflow:hidden;margin-top:10px}
+.booked{text-align:center;padding:30px 10px}
+.booked .big{font-size:52px}
+
+@media (max-width:820px){
+  .hero-grid,.tri-explain,.about{grid-template-columns:1fr}
+  .hero-photo{max-width:380px;aspect-ratio:1}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  section{padding:56px 0}
+}
+@media (max-width:480px){
+  .scale{grid-template-columns:repeat(5,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .r-card{padding:20px 16px}
+  .btn{width:100%}
+  .nav a{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ LANDING ============ -->
+<header class="hero">
+  <div class="wrap">
+    <nav class="nav">
+      <div class="brand" data-cfg="brand"></div>
+      <div class="nav-r">
+        <a href="#about" data-t="navAbout"></a>
+        <div class="lang"><button data-lang="ms">BM</button><button data-lang="en">EN</button></div>
+      </div>
+    </nav>
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow" data-t="heroEyebrow"></div>
+        <h1 class="display" data-t="heroH"></h1>
+        <p data-t="heroP"></p>
+        <button class="btn" data-start data-t="start"></button>
+        <ul class="ticks"><li data-t="tick1"></li><li data-t="tick2"></li><li data-t="tick3"></li></ul>
+      </div>
+      <div class="hero-photo" id="hero-photo"><div class="ph">Your photo here<br>(img/coach.jpg)</div></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap tri-explain">
+    <div>
+      <div class="eyebrow" data-t="triEyebrow"></div>
+      <h2 class="display" data-t="triH"></h2>
+      <p class="lead" data-t="triP"></p>
+      <div class="pillar-cards">
+        <div class="pc"><b data-t="pcN"></b><span data-t="pcNt"></span></div>
+        <div class="pc"><b data-t="pcE"></b><span data-t="pcEt"></span></div>
+        <div class="pc"><b data-t="pcM"></b><span data-t="pcMt"></span></div>
+      </div>
+    </div>
+    <div id="tri-demo"></div>
+  </div>
+</section>
+
+<section class="results">
+  <div class="wrap">
+    <div class="eyebrow" data-t="resEyebrow"></div>
+    <h2 class="display" data-t="resH"></h2>
+    <p class="lead" data-t="resP"></p>
+    <div class="gallery" id="gallery"></div>
+    <div style="text-align:center;margin-top:24px"><button class="btn ghost" id="more-results"></button></div>
+    <p class="small" style="margin-top:14px" data-t="resNote"></p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about">
+    <div>
+      <div class="ba">
+        <figure><img src="img/me-before.jpg" alt="Coach before" loading="lazy"><figcaption data-t="before"></figcaption></figure>
+        <figure><img src="img/me-after.jpg" alt="Coach after" loading="lazy"><figcaption class="after" data-t="after"></figcaption></figure>
+      </div>
+      <div class="stats" id="stats"></div>
+    </div>
+    <div>
+      <div class="eyebrow" data-t="aboutEyebrow"></div>
+      <h2 class="display" data-cfg="coachName"></h2>
+      <div class="story" id="story"></div>
+      <div style="margin-top:24px"><button class="btn" data-start data-t="take"></button></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#fff">
+  <div class="wrap" style="max-width:760px">
+    <div class="eyebrow">FAQ</div>
+    <h2 class="display" data-t="faqH"></h2>
+    <div id="faq"></div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2 class="display" data-t="finalH"></h2>
+    <p data-t="finalP"></p>
+    <button class="btn" data-start data-t="start"></button>
+  </div>
+</section>
+<footer>
+  <div class="social">
+    <a href="https://www.instagram.com/coachwin_" target="_blank" rel="noopener" aria-label="Instagram @coachwin_">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      <span>@coachwin_</span></a>
+    <a href="https://www.tiktok.com/@coachwin_" target="_blank" rel="noopener" aria-label="TikTok @coachwin_">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1c-1.5.1-2.8-.3-4-1.1v6.6c0 3.7-3 6-6.2 5.4-2.6-.5-4.4-2.8-4.2-5.5.2-3 2.9-5.2 5.9-4.8v3.2c-1.4-.4-2.9.5-3 2-.1 1.2.8 2.2 2 2.3 1.3.1 2.3-.9 2.3-2.2V3h3.2z"/></svg>
+      <span>@coachwin_</span></a>
+  </div>
+  <span data-cfg="brand"></span> · <span data-t="footer"></span>
+</footer>
+
+<!-- ============ QUIZ APP ============ -->
+<div id="app" role="dialog" aria-modal="true" aria-label="Quiz">
+  <div class="app-top">
+    <div class="app-bar">
+      <button class="icon-btn" id="back" data-t="back"></button>
+      <div class="lang"><button data-lang="ms">BM</button><button data-lang="en">EN</button></div>
+      <button class="icon-btn" id="close" data-t="close"></button>
+    </div>
+    <div class="prog"><span id="prog"></span></div>
+  </div>
+  <div class="stage" id="stage"></div>
+</div>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+/* =====================================================
+   1. EDIT THESE SETTINGS
+   ===================================================== */
+const CONFIG = {
+  defaultLang: "ms",                       // "ms" = Bahasa Melayu first, "en" = English first. A link with ?lang=en or ?lang=ms overrides this.
+  brand: "Coach<span>Win</span>",           // logo text (the <span> part shows in orange)
+  coachName: { en:"Hi, I'm Coach Win", ms:"Hai, saya Coach Win" },
+  // your results, shown under your before/after photos
+  stats: [
+    { v:"-15 kg", l:{en:"weight", ms:"berat badan"} },
+    { v:"-13%",   l:{en:"body fat", ms:"lemak badan"} },
+    { v:"+10 kg", l:{en:"muscle", ms:"otot"} },
+    { v:"5",      l:{en:"months", ms:"bulan"} }
+  ],
+  // your story: each line is one paragraph; a line starting with ">" is shown as a big quote
+  story: {
+    en:[
+      "I used to drive Grab for more than 16 hours a day while finishing my geophysics degree.",
+      "I was trading my time, my energy, my family time and my health for money. The more I earned, the more I spent, a lot of it on my health. I was always tired and kept falling sick.",
+      "I'd been into fitness since I was young, so I tried to get in shape on my own. Like most people, I struggled, because I didn't understand nutrition, training or my own body.",
+      "Then I joined a coaching program like this one. In 5 months I lost 15 kg and 13% body fat, and gained 10 kg of muscle. Once I put my health first, everything I had lost came back: my energy, my time, my money and my time with family.",
+      ">Health is wealth. Whatever you're struggling with, start with your health.",
+      "That's why I became a coach. For almost 7 years I've helped working professionals lose weight in a way that fits their life: no extreme diets, no extreme workouts, and no cutting out rice or sugar completely."
+    ],
+    ms:[
+      "Dulu saya memandu Grab lebih 16 jam sehari sambil menghabiskan ijazah geofizik.",
+      "Saya korbankan masa, tenaga, masa bersama keluarga dan kesihatan saya demi duit. Makin banyak saya dapat, makin banyak saya belanja, kebanyakannya untuk kesihatan. Saya selalu penat dan kerap jatuh sakit.",
+      "Saya memang minat fitness sejak kecil, jadi saya cuba kurus sendiri. Macam ramai orang, saya gagal, sebab saya tak faham pemakanan, senaman dan badan saya sendiri.",
+      "Kemudian saya sertai program coaching macam ini. Dalam 5 bulan, saya turun 15 kg dan 13% lemak badan, dan naik 10 kg otot. Bila saya utamakan kesihatan, semua yang hilang datang balik: tenaga, masa, duit dan masa bersama keluarga.",
+      ">Kesihatan ialah kekayaan. Apa pun masalah anda, mulakan dengan kesihatan.",
+      "Sebab itu saya jadi coach. Hampir 7 tahun saya bantu golongan profesional yang bekerja turunkan berat badan dengan cara yang sesuai dengan hidup mereka: tanpa diet ekstrem, tanpa senaman ekstrem, dan tanpa berhenti makan nasi atau gula sepenuhnya."
+    ]
+  },
+  calendly: "https://calendly.com/coachwin_/free_consult",
+  sheetUrl: "https://script.google.com/macros/s/AKfycbyqOABqtkO-yPog_dFs5zDdUbPLC7xRf9DKAmQ2VX2q6BUnMG3gV_tEvU4DFgeYXkjb/exec",   // Google Sheet lead tracker (see README)
+  coachPhoto: "img/coach.jpg",
+  // client result posters in img/results/01.jpg, 02.jpg … (exported from Canva). To add one, save it as the next number and raise this count.
+  resultsCount: 43,
+  resultsFirst: 9       // how many show before the "See more results" button
+};
+
+/* =====================================================
+   2. WORDING (English + Bahasa Melayu)
+   ===================================================== */
+const TEXT = {
+  en:{
+    navAbout:"About me", heroEyebrow:"Free 2-minute quiz",
+    heroH:"Why can't you <em>lose weight?</em>",
+    heroP:"Answer a few quick questions. See which side of your <b>Weight Loss Triangle</b> is holding you back, then book a free call to find the root cause.",
+    start:"Start the quiz →", take:"Take the quiz →",
+    tick1:"Your score on nutrition, exercise and mindset", tick2:"Your weakest side, and the first thing to fix", tick3:"No diet pills, no starving",
+    triEyebrow:"The Weight Loss Triangle", triH:"Weight loss stalls when one side is weak.",
+    triP:"Most people try to fix everything at once and burn out. The quiz shows which side to fix first.",
+    pcNt:"What, when and how much you eat and drink.", pcEt:"Your workouts, and how much you move during the day.", pcMt:"Sleep, stress, emotional eating, and staying consistent.",
+    triCenter:["YOUR","RESULT"],
+    resEyebrow:"Client results", resH:"Real people. Real kilos.",
+    resP:"Results from clients of the <b>#WeDoTransformations</b> coaching team, the system I coach with. Men and women, all ages, every background.",
+    resNote:"Results shown are from the WDT coaching team. Results are not typical; individual results vary and depend on consistency.",
+    resMore:n=>`See ${n} more results`, resAlt:"Client before and after result",
+    aboutEyebrow:"My story", before:"BEFORE", after:"AFTER", faqH:"Questions",
+    faq:[
+      ["Is the quiz really free?","Yes. The quiz and the consultation call are both free. On the call we look at your results together and work out what's really stopping your progress."],
+      ["What happens on the call?","It's a 1-to-1 video or phone call. We go through your quiz answers, find the root cause of your weight issue, and I explain how my program would fix it. If it isn't a fit, I'll tell you."],
+      ["Do I need to go to the gym?","No. Plans can be done at home, at the gym, or a mix of both, depending on your schedule."],
+      ["Do I have to stop eating rice or nasi lemak?","No. You'll learn to fit the food you love into your plan, rather than cutting it out and then bingeing."]
+    ],
+    finalH:"Find your weak side in 2 minutes.", finalP:"Free. No signup to start. Your result is shown right away.",
+    footer:"This quiz is for general education, not medical advice.",
+    back:"← Back", close:"Close ✕", yourResult:"Your result",
+    scaleLo:"Not really", scaleHi:"Totally committed",
+    cTag:"Your result is ready", cH:"Where should I send your result?", cSub:"You'll see your result straight away on the next screen.",
+    cName:"Name", cWa:"WhatsApp number", cEmail:"Email", cGo:"Show my result →",
+    cPrivacy:"I'll only use your details to follow up about your result. No spam.",
+    eName:"Please enter your name.", eWa:"Please enter a valid WhatsApp number.", eEmail:"Please enter a valid email.",
+    rTag:"Your result",
+    rWeak:(n,p)=>`${n}, <span>${p}</span> is your weakest side.`,
+    rStrong:n=>`${n}, your habits look solid.`,
+    boxWeak:p=>`When one side of the triangle is weak, the other two can't hold you up for long. That's why past attempts didn't stick. <b>Fix ${p} first</b> and the rest gets easier.`,
+    boxStrong:"Your scores are good on all three sides. When the habits look right but the scale still won't move, the cause is usually hidden: portion sizes, how you train, or something about your body. That's exactly what we look at on the call.",
+    rootsH:p=>`What usually causes weak ${p}`, rootsHStrong:"Where people with your score usually get stuck",
+    rootsSub:"There are 4 common root causes. Everyone's mix is different, and finding yours is what the call is for.",
+    bookH:n=>`Let's find your root cause, ${n}.`,
+    bookP:"Book your <b>free consultation call</b>. We'll go through your answers, find what's really behind your weight, and I'll show you how my program fixes it.",
+    tipH:"Start with this tip",
+    softP:"When you're ready to find the real root cause and get a plan built around you, book a free call with me.",
+    bookBtn:"Book my free call →",
+    disclaimer:"This quiz is for general education and isn't medical advice.",
+    bookedH:n=>`You're booked, ${n}!`,
+    bookedP:"Check your email for the call details. Before we talk, think about one thing: what has stopped you from sticking with it in the past?"
+  },
+  ms:{
+    navAbout:"Tentang saya", heroEyebrow:"Kuiz percuma 2 minit",
+    heroH:"Kenapa berat anda <em>tak turun?</em>",
+    heroP:"Jawab beberapa soalan ringkas. Ketahui bahagian mana dalam <b>Segi Tiga Turun Berat</b> anda yang paling lemah, kemudian tempah panggilan percuma untuk cari punca sebenar.",
+    start:"Mula kuiz →", take:"Jawab kuiz →",
+    tick1:"Skor anda untuk pemakanan, senaman dan minda", tick2:"Bahagian paling lemah anda, dan apa yang perlu dibaiki dulu", tick3:"Tiada pil diet, tak perlu berlapar",
+    triEyebrow:"Segi Tiga Turun Berat", triH:"Berat tersekat bila satu bahagian lemah.",
+    triP:"Ramai cuba ubah semua sekali gus, lepas tu putus asa. Kuiz ini tunjuk bahagian mana yang perlu dibaiki dulu.",
+    pcNt:"Apa, bila dan berapa banyak anda makan dan minum.", pcEt:"Senaman anda, dan berapa aktif anda sepanjang hari.", pcMt:"Tidur, stres, makan ikut emosi, dan kekal konsisten.",
+    triCenter:["SKOR","ANDA"],
+    resEyebrow:"Hasil klien", resH:"Orang sebenar. Kilo sebenar.",
+    resP:"Hasil klien pasukan coaching <b>#WeDoTransformations</b>, sistem yang saya gunakan. Lelaki dan wanita, pelbagai umur dan latar belakang.",
+    resNote:"Hasil yang ditunjukkan adalah daripada pasukan coaching WDT. Hasil bukan tipikal; berbeza bagi setiap orang dan bergantung pada konsistensi.",
+    resMore:n=>`Lihat ${n} lagi hasil`, resAlt:"Hasil sebelum dan selepas klien",
+    aboutEyebrow:"Kisah saya", before:"SEBELUM", after:"SELEPAS", faqH:"Soalan lazim",
+    faq:[
+      ["Betul ke kuiz ini percuma?","Ya. Kuiz dan panggilan konsultasi kedua-duanya percuma. Dalam panggilan itu kita semak keputusan anda bersama dan cari apa yang sebenarnya menghalang kemajuan anda."],
+      ["Apa yang berlaku dalam panggilan?","Ia panggilan video atau telefon 1-dengan-1. Kita semak jawapan kuiz anda, cari punca sebenar masalah berat anda, dan saya terangkan bagaimana program saya boleh baikinya. Kalau tak sesuai, saya akan beritahu."],
+      ["Perlu ke pergi gim?","Tidak. Pelan boleh dibuat di rumah, di gim, atau kedua-duanya, ikut jadual anda."],
+      ["Perlu ke berhenti makan nasi atau nasi lemak?","Tidak. Anda akan belajar masukkan makanan kegemaran ke dalam pelan, bukan buang terus lepas tu makan berlebihan."]
+    ],
+    finalH:"Cari bahagian lemah anda dalam 2 minit.", finalP:"Percuma. Tak perlu daftar untuk mula. Keputusan terus keluar.",
+    footer:"Kuiz ini untuk pendidikan umum, bukan nasihat perubatan.",
+    back:"← Kembali", close:"Tutup ✕", yourResult:"Keputusan anda",
+    scaleLo:"Tak berapa", scaleHi:"Sangat komited",
+    cTag:"Keputusan anda dah siap", cH:"Ke mana saya patut hantar keputusan anda?", cSub:"Keputusan akan terus keluar di skrin seterusnya.",
+    cName:"Nama", cWa:"Nombor WhatsApp", cEmail:"E-mel", cGo:"Tunjuk keputusan saya →",
+    cPrivacy:"Maklumat anda hanya digunakan untuk susulan tentang keputusan anda. Tiada spam.",
+    eName:"Sila masukkan nama anda.", eWa:"Sila masukkan nombor WhatsApp yang sah.", eEmail:"Sila masukkan e-mel yang sah.",
+    rTag:"Keputusan anda",
+    rWeak:(n,p)=>`${n}, <span>${p}</span> ialah bahagian paling lemah anda.`,
+    rStrong:n=>`${n}, tabiat anda nampak bagus.`,
+    boxWeak:p=>`Bila satu bahagian segi tiga lemah, dua lagi tak boleh tampung anda lama. Sebab itu cubaan lepas tak kekal. <b>Baiki ${p} dulu</b>, dan yang lain jadi lebih mudah.`,
+    boxStrong:"Skor anda bagus di ketiga-tiga bahagian. Bila tabiat nampak betul tapi berat masih tak turun, puncanya biasanya tersembunyi: saiz hidangan, cara anda bersenam, atau sesuatu tentang badan anda. Itulah yang kita akan semak dalam panggilan nanti.",
+    rootsH:p=>`Punca biasa bahagian ${p} lemah`, rootsHStrong:"Di mana orang dengan skor macam anda biasanya tersekat",
+    rootsSub:"Ada 4 punca biasa. Gabungan setiap orang berbeza, dan panggilan itulah untuk cari punca anda.",
+    bookH:n=>`Jom cari punca sebenar anda, ${n}.`,
+    bookP:"Tempah <b>panggilan konsultasi percuma</b> anda. Kita akan semak jawapan anda, cari apa sebenarnya punca berat anda, dan saya tunjuk bagaimana program saya boleh baikinya.",
+    tipH:"Mulakan dengan tip ini",
+    softP:"Bila anda dah bersedia untuk cari punca sebenar dan dapatkan pelan yang dibina khas untuk anda, tempah panggilan percuma dengan saya.",
+    bookBtn:"Tempah panggilan percuma →",
+    disclaimer:"Kuiz ini untuk pendidikan umum, bukan nasihat perubatan.",
+    bookedH:n=>`Tempahan berjaya, ${n}!`,
+    bookedP:"Semak e-mel anda untuk butiran panggilan. Sebelum kita berbual, fikirkan satu perkara: apa yang buat anda berhenti sebelum ini?"
+  }
+};
+
+/* =====================================================
+   3. QUIZ QUESTIONS
+   score: 0 = needs most work … 3 = already strong
+   ===================================================== */
+const PILLARS = {
+  nutrition:{ name:{en:"Nutrition",ms:"Pemakanan"}, emoji:"🍽️" },
+  exercise: { name:{en:"Exercise", ms:"Senaman"},   emoji:"🏃" },
+  mindset:  { name:{en:"Mindset",  ms:"Minda"},     emoji:"🧠" }
+};
+const TAGS = { about:{en:"About you",ms:"Tentang anda"}, almost:{en:"Almost done",ms:"Hampir siap"}, last:{en:"Last one",ms:"Soalan terakhir"} };
+
+const QUESTIONS = [
+  { id:"goal", tag:"about",
+    q:{en:"How much weight do you want to lose?", ms:"Berapa banyak berat yang anda nak turunkan?"},
+    a:[{en:"Under 5 kg",ms:"Kurang 5 kg"},{en:"5 – 10 kg",ms:"5 – 10 kg"},{en:"10 – 15 kg",ms:"10 – 15 kg"},{en:"15 kg or more",ms:"15 kg atau lebih"}] },
+  { id:"why", tag:"about",
+    q:{en:"Why does this matter to you right now?", ms:"Kenapa perkara ini penting untuk anda sekarang?"},
+    a:[{en:"My health. My doctor or my test results worry me",ms:"Kesihatan. Doktor atau keputusan ujian saya membimbangkan"},
+       {en:"I don't feel confident in my body",ms:"Saya tak yakin dengan badan saya"},
+       {en:"A big event is coming (wedding, trip, raya)",ms:"Ada majlis besar nanti (kahwin, bercuti, raya)"},
+       {en:"I'm tired of starting over again and again",ms:"Saya penat asyik mula semula"}] },
+
+  { id:"meals", pillar:"nutrition",
+    q:{en:"On a normal workday, how do your meals go?", ms:"Pada hari bekerja biasa, macam mana waktu makan anda?"},
+    a:[[{en:"I skip meals, then eat a lot at night",ms:"Saya skip makan, lepas tu makan banyak waktu malam"},0],
+       [{en:"Mostly mamak or takeaway, whatever is fastest",ms:"Kebanyakannya mamak atau bungkus, apa yang paling cepat"},1],
+       [{en:"Fairly regular, but I don't really plan",ms:"Agak teratur, tapi tak dirancang sangat"},2],
+       [{en:"Planned meals with protein in most of them",ms:"Makan terancang, ada protein dalam kebanyakan hidangan"},3]] },
+  { id:"drinks", pillar:"nutrition",
+    q:{en:"What do you usually drink in a day?", ms:"Apa yang anda biasa minum dalam sehari?"},
+    a:[[{en:"2 or more teh tarik, Milo, boba or soft drinks",ms:"2 atau lebih teh tarik, Milo, boba atau air bergas"},0],
+       [{en:"About 1 sweet drink a day",ms:"Lebih kurang 1 air manis sehari"},1],
+       [{en:"Mostly water, sweet drinks a few times a week",ms:"Kebanyakannya air kosong, air manis beberapa kali seminggu"},2],
+       [{en:"Water, or tea and coffee without sugar",ms:"Air kosong, atau teh dan kopi tanpa gula"},3]] },
+  { id:"night", pillar:"nutrition",
+    q:{en:"How often do you snack or eat after 9 pm?", ms:"Berapa kerap anda snek atau makan selepas jam 9 malam?"},
+    a:[[{en:"Almost every night",ms:"Hampir setiap malam"},0],[{en:"A few times a week",ms:"Beberapa kali seminggu"},1],
+       [{en:"Once in a while",ms:"Sekali-sekala"},2],[{en:"Rarely",ms:"Jarang sekali"},3]] },
+
+  { id:"exercise", pillar:"exercise",
+    q:{en:"How often do you exercise on purpose?", ms:"Berapa kerap anda bersenam dengan sengaja?"},
+    a:[[{en:"Not at all right now",ms:"Langsung tak buat sekarang"},0],
+       [{en:"On and off, when I feel motivated",ms:"Kadang-kadang, bila rasa bersemangat"},1],
+       [{en:"1 – 2 times a week",ms:"1 – 2 kali seminggu"},2],
+       [{en:"3+ times a week, including strength training",ms:"3 kali atau lebih seminggu, termasuk latihan kekuatan"},3]] },
+  { id:"steps", pillar:"exercise",
+    q:{en:"Outside of workouts, how active is your day?", ms:"Selain senaman, seaktif mana hari anda?"},
+    a:[[{en:"Desk all day and I drive everywhere",ms:"Duduk di meja sepanjang hari dan memandu ke mana-mana"},0],
+       [{en:"Mostly sitting, a little walking",ms:"Banyak duduk, sedikit berjalan"},1],
+       [{en:"On my feet for part of the day",ms:"Berdiri atau bergerak sebahagian hari"},2],
+       [{en:"Active job, or 8,000+ steps a day",ms:"Kerja aktif, atau 8,000+ langkah sehari"},3]] },
+
+  { id:"sleep", pillar:"mindset",
+    q:{en:"How are your sleep and stress lately?", ms:"Macam mana tidur dan tahap stres anda kebelakangan ini?"},
+    a:[[{en:"Under 6 hours of sleep and very stressed",ms:"Tidur kurang 6 jam dan sangat stres"},0],
+       [{en:"Poor sleep or high stress",ms:"Tidur tak lena atau stres tinggi"},1],
+       [{en:"Okay most nights",ms:"Okey kebanyakan malam"},2],
+       [{en:"7+ hours, stress is under control",ms:"Tidur 7 jam ke atas, stres terkawal"},3]] },
+  { id:"emotional", pillar:"mindset",
+    q:{en:"When you're stressed, tired or bored, what happens?", ms:"Bila anda stres, penat atau bosan, apa yang berlaku?"},
+    a:[[{en:"I eat. Food is my comfort",ms:"Saya makan. Makanan ialah penenang saya"},0],
+       [{en:"I often reach for snacks",ms:"Selalu cari snek"},1],
+       [{en:"Sometimes I snack",ms:"Kadang-kadang saya snek"},2],
+       [{en:"I rarely eat because of emotions",ms:"Jarang makan sebab emosi"},3]] },
+  { id:"past", pillar:"mindset",
+    q:{en:"What happened the last time you tried to lose weight?", ms:"Apa jadi kali terakhir anda cuba turunkan berat?"},
+    a:[[{en:"I lost some, then gained it all back (or more)",ms:"Turun sikit, lepas tu naik balik semua (atau lebih)"},0],
+       [{en:"I gave up within a few weeks",ms:"Berhenti dalam masa beberapa minggu"},1],
+       [{en:"I lost a bit, then got stuck",ms:"Turun sikit, lepas tu tersekat"},2],
+       [{en:"It mostly worked. I want to finish the job",ms:"Kebanyakannya berjaya. Saya nak teruskan sampai capai sasaran"},3]] },
+
+  { id:"start", tag:"almost",
+    q:{en:"When would you like to start?", ms:"Bila anda nak mula?"},
+    a:[{en:"Right away",ms:"Sekarang juga"},{en:"Within the next month",ms:"Dalam bulan ini"},
+       {en:"In a few months",ms:"Dalam beberapa bulan lagi"},{en:"I'm just looking for now",ms:"Saya cuma tengok-tengok dulu"}] },
+  { id:"commit", tag:"almost", type:"scale",
+    q:{en:"How committed are you to fixing this, from 1 to 10?", ms:"Dari 1 hingga 10, seberapa komited anda nak selesaikan masalah ini?"} },
+  { id:"invest", tag:"last",
+    q:{en:"If a coach showed you exactly what to fix, would you invest in a program?", ms:"Kalau seorang coach tunjuk apa yang perlu dibaiki, adakah anda sanggup melabur dalam program?"},
+    a:[{en:"Yes, if it fits me",ms:"Ya, kalau sesuai dengan saya"},{en:"Maybe, it depends on the cost",ms:"Mungkin, bergantung pada kos"},
+       {en:"No, I only want free tips",ms:"Tidak, saya cuma nak tip percuma"}] }
+];
+
+/* what each weak side usually comes from. The first one is shown, the rest are "unlocked" on the call */
+const ROOTS = {
+  nutrition:[{en:"Not enough protein, so you're hungry and snacking by the afternoon",ms:"Protein tak cukup, jadi anda lapar dan mula snek waktu petang"},
+             {en:"Calories in drinks and sauces you don't count",ms:"Kalori dalam minuman dan sos yang anda tak kira"},
+             {en:"An eating pattern that makes night cravings worse",ms:"Corak makan yang buat keinginan makan waktu malam makin teruk"},
+             {en:"Portions that don't match your goal",ms:"Saiz hidangan yang tak sepadan dengan matlamat anda"}],
+  exercise: [{en:"Too little daily movement. Workouts can't make up for 10 hours of sitting",ms:"Kurang bergerak setiap hari. Senaman tak boleh tampung 10 jam duduk"},
+             {en:"No strength training, so you lose muscle instead of fat",ms:"Tiada latihan kekuatan, jadi anda hilang otot, bukan lemak"},
+             {en:"Doing too much at once, then stopping completely",ms:"Buat terlalu banyak sekali gus, lepas tu berhenti terus"},
+             {en:"Workouts that don't fit your schedule",ms:"Senaman yang tak sesuai dengan jadual anda"}],
+  mindset:  [{en:"Short sleep raises hunger hormones and cravings",ms:"Kurang tidur menaikkan hormon lapar dan keinginan makan"},
+             {en:"Stress eating that no diet ever deals with",ms:"Makan ikut stres yang tak pernah diselesaikan oleh mana-mana diet"},
+             {en:"All-or-nothing thinking after one 'bad' day",ms:"Fikiran 'semua atau tiada' selepas satu hari yang 'teruk'"},
+             {en:"No one keeping you accountable",ms:"Tiada sesiapa yang pastikan anda konsisten"}]
+};
+const TIPS = {
+  nutrition:{en:"This week: have a palm-sized portion of protein (eggs, chicken, fish, tofu, tempeh) with breakfast and lunch, and swap one sweet drink a day for water.",
+             ms:"Minggu ini: ambil protein sebesar tapak tangan (telur, ayam, ikan, tauhu, tempe) waktu sarapan dan makan tengah hari, dan tukar satu air manis sehari kepada air kosong."},
+  exercise:{en:"This week: take a 10-minute walk after lunch or dinner every day. Small, daily movement adds up faster than one hard gym session.",
+            ms:"Minggu ini: berjalan 10 minit selepas makan tengah hari atau makan malam setiap hari. Bergerak sedikit setiap hari lebih berkesan daripada satu sesi gim yang berat."},
+  mindset:{en:"This week: set a fixed bedtime and put your phone away 30 minutes before. Better sleep makes cravings much easier to control.",
+           ms:"Minggu ini: tetapkan waktu tidur yang sama setiap malam dan letak telefon 30 minit sebelum tidur. Tidur yang cukup buat keinginan makan lebih mudah dikawal."}
+};
+
+/* =====================================================
+   4. APP (no need to edit below)
+   ===================================================== */
+const $ = id => document.getElementById(id);
+const params = new URLSearchParams(location.search);
+const SRC = (params.get("src") || params.get("utm_source") ||
+  (/Instagram/i.test(navigator.userAgent) ? "instagram" : /FBAN|FBAV/i.test(navigator.userAgent) ? "facebook" : /TikTok|musical_ly|Bytedance/i.test(navigator.userAgent) ? "tiktok" : "website")
+).toLowerCase().replace(/[^a-z0-9_-]/g,"").slice(0,20);
+
+let LANG = (() => {
+  const p = params.get("lang"); if(p === "en" || p === "ms") return p;
+  try { const s = localStorage.getItem("quizLang"); if(s === "en" || s === "ms") return s; } catch(e){}
+  return CONFIG.defaultLang;
+})();
+const T = () => TEXT[LANG];
+const L = x => (x && typeof x === "object" && !Array.isArray(x)) ? (x[LANG] ?? x.en) : x;
+const pname = p => L(PILLARS[p].name);
+
+function triSVG(labels, colors, widths, center, dashed){
+  return `<svg viewBox="0 0 320 300" role="img" aria-label="${labels.join(", ")}">
+    <polygon points="160,24 300,266 20,266" fill="${center ? "#fff" : "#faf7f2"}"/>
+    <line x1="160" y1="24" x2="20" y2="266" stroke="${colors[0]}" stroke-width="${widths[0]}" stroke-linecap="round" ${dashed===0?'stroke-dasharray="2 22"':''}/>
+    <line x1="160" y1="24" x2="300" y2="266" stroke="${colors[1]}" stroke-width="${widths[1]}" stroke-linecap="round" ${dashed===1?'stroke-dasharray="2 22"':''}/>
+    <line x1="20" y1="266" x2="300" y2="266" stroke="${colors[2]}" stroke-width="${widths[2]}" stroke-linecap="round" ${dashed===2?'stroke-dasharray="2 22"':''}/>
+    <text x="58" y="138" font-family="Inter" font-weight="700" font-size="14" fill="#16201b" transform="rotate(-60 58 138)" text-anchor="middle">${labels[0]}</text>
+    <text x="262" y="138" font-family="Inter" font-weight="700" font-size="14" fill="#16201b" transform="rotate(60 262 138)" text-anchor="middle">${labels[1]}</text>
+    <text x="160" y="294" font-family="Inter" font-weight="700" font-size="14" fill="#16201b" text-anchor="middle">${labels[2]}</text>
+    ${center ? `<text x="160" y="188" font-family="Bricolage Grotesque,Inter" font-weight="800" font-size="22" fill="#16201b" text-anchor="middle">${center[0]}</text>
+    <text x="160" y="214" font-family="Bricolage Grotesque,Inter" font-weight="800" font-size="22" fill="#16201b" text-anchor="middle">${center[1]}</text>` : ""}
+  </svg>`;
+}
+
+// fill all page text in the current language
+function applyLang(){
+  document.documentElement.lang = LANG;
+  document.querySelectorAll("[data-t]").forEach(el => { const v = T()[el.dataset.t]; if(typeof v === "string") el.innerHTML = v; });
+  document.querySelectorAll("[data-cfg]").forEach(el => el.innerHTML = L(CONFIG[el.dataset.cfg]));
+  document.querySelectorAll("[data-lang]").forEach(b => b.classList.toggle("on", b.dataset.lang === LANG));
+  const pc = { pcN:"nutrition", pcE:"exercise", pcM:"mindset" };
+  Object.keys(pc).forEach(k => document.querySelector(`[data-t="${k}"]`).innerHTML = `${PILLARS[pc[k]].emoji} ${pname(pc[k])}`);
+  $("tri-demo").innerHTML = triSVG(["nutrition","exercise","mindset"].map(p => pname(p).toUpperCase()), ["#1f9d6b","#e9a514","#ff5a36"], [12,12,12], T().triCenter);
+  renderGallery();
+  $("stats").innerHTML = CONFIG.stats.map(s => `<div class="stat"><b>${s.v}</b><span>${L(s.l)}</span></div>`).join("");
+  $("story").innerHTML = L(CONFIG.story).map(p => p.startsWith(">") ? `<blockquote>${p.slice(1)}</blockquote>` : `<p>${p}</p>`).join("");
+  $("faq").innerHTML = T().faq.map(([q,a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join("");
+  if($("app").classList.contains("open")) render();
+}
+document.querySelectorAll("[data-lang]").forEach(b => b.onclick = () => {
+  LANG = b.dataset.lang; try { localStorage.setItem("quizLang", LANG); } catch(e){}
+  applyLang();
+});
+
+function bgPhoto(el, src){ const i = new Image(); i.onload = () => { el.style.backgroundImage = `url("${src}")`; el.innerHTML = ""; }; i.src = src; }
+bgPhoto($("hero-photo"), CONFIG.coachPhoto);
+let galleryOpen = false;
+function renderGallery(){
+  const n = galleryOpen ? CONFIG.resultsCount : Math.min(CONFIG.resultsFirst, CONFIG.resultsCount);
+  $("gallery").innerHTML = Array.from({length:n}, (_,i) => {
+    const src = `img/results/${String(i+1).padStart(2,"0")}.jpg`;
+    return `<figure><img src="${src}" alt="${T().resAlt} ${i+1}" loading="lazy" onerror="this.parentNode.innerHTML='<div class=&quot;ph&quot;>${src}</div>'"></figure>`;
+  }).join("");
+  const more = $("more-results");
+  more.style.display = galleryOpen || CONFIG.resultsCount <= CONFIG.resultsFirst ? "none" : "";
+  more.textContent = T().resMore(CONFIG.resultsCount - CONFIG.resultsFirst);
+}
+$("more-results").onclick = () => { galleryOpen = true; renderGallery(); };
+
+// state
+let step = 0, answers = {}, lead = {}, leadSent = false, calShown = false;
+const TOTAL = QUESTIONS.length + 1; // + contact form
+
+function send(type, extra){
+  if(!CONFIG.sheetUrl) return;
+  const body = JSON.stringify(Object.assign({ type, time:new Date().toISOString(), source:SRC, lang:LANG }, extra));
+  fetch(CONFIG.sheetUrl, { method:"POST", mode:"no-cors", headers:{"Content-Type":"text/plain;charset=utf-8"}, body }).catch(()=>{});
+}
+
+function openQuiz(){
+  step = 0; answers = {}; leadSent = false; calShown = false;
+  $("app").classList.add("open"); document.body.style.overflow = "hidden"; render(); send("start", {});
+}
+function closeQuiz(){ $("app").classList.remove("open"); document.body.style.overflow = ""; }
+document.querySelectorAll("[data-start]").forEach(b => b.onclick = openQuiz);
+$("close").onclick = closeQuiz;
+$("back").onclick = () => { if(step > 0 && step <= QUESTIONS.length){ step--; render(); } };
+
+function setProgress(){
+  $("prog").style.width = (Math.min(step, TOTAL) / TOTAL * 100) + "%";
+  $("back").style.visibility = (step > 0 && step <= QUESTIONS.length) ? "visible" : "hidden";
+}
+
+function render(){
+  setProgress();
+  if(step < QUESTIONS.length) { $("app").scrollTop = 0; return renderQuestion(QUESTIONS[step]); }
+  if(step === QUESTIONS.length) { $("app").scrollTop = 0; return renderContact(); }
+  renderResult();
+}
+
+function optLabel(a){ return L(Array.isArray(a) ? a[0] : a); }
+
+function renderQuestion(q){
+  const tag = q.pillar ? `${PILLARS[q.pillar].emoji} ${pname(q.pillar)}` : L(TAGS[q.tag]);
+  let html = `<div class="fade"><div class="qtag">${tag} · ${step+1}/${TOTAL}</div><h2 class="display qtitle">${L(q.q)}</h2>`;
+  if(q.type === "scale"){
+    html += `<div class="opts scale">` + Array.from({length:10},(_,i)=>`<button class="opt${answers[q.id]===i+1?" sel":""}" data-v="${i+1}">${i+1}</button>`).join("") +
+            `</div><div class="scale-lbl"><span>${T().scaleLo}</span><span>${T().scaleHi}</span></div>`;
+  } else {
+    html += `<div class="opts">` + q.a.map((a,i)=>`<button class="opt${answers[q.id]===i?" sel":""}" data-v="${i}">${optLabel(a)}</button>`).join("") + `</div>`;
+  }
+  $("stage").innerHTML = html + `</div>`;
+  $("stage").querySelectorAll(".opt").forEach(b => b.onclick = () => {
+    answers[q.id] = +b.dataset.v; b.classList.add("sel");
+    if(step === Math.floor(QUESTIONS.length/2)) send("halfway", {});
+    setTimeout(() => { step++; render(); }, 180);
+  });
+}
+
+function renderContact(){
+  // keep anything already typed if the language is switched on this screen
+  ["name","wa","email"].forEach(k => { const el = $("f-"+k); if(el) lead[k] = el.value; });
+  const t = T();
+  $("stage").innerHTML = `<div class="fade">
+    <div class="qtag">${t.cTag}</div>
+    <h2 class="display qtitle">${t.cH}</h2>
+    <p class="small" style="margin:-10px 0 20px">${t.cSub}</p>
+    <div class="field"><label for="f-name">${t.cName}</label><input id="f-name" autocomplete="name"></div>
+    <div class="field"><label for="f-wa">${t.cWa}</label><input id="f-wa" type="tel" inputmode="tel" placeholder="012-345 6789" autocomplete="tel"></div>
+    <div class="field"><label for="f-email">${t.cEmail}</label><input id="f-email" type="email" autocomplete="email"></div>
+    <div class="err" id="f-err"></div>
+    <button class="btn" id="f-go" style="width:100%">${t.cGo}</button>
+    <p class="small" style="margin-top:12px;text-align:center">${t.cPrivacy}</p>
+  </div>`;
+  ["name","wa","email"].forEach(k => $("f-"+k).value = lead[k] || "");
+  $("f-go").onclick = () => {
+    const name = $("f-name").value.trim(), wa = $("f-wa").value.replace(/[^\d+]/g,""), email = $("f-email").value.trim();
+    if(name.length < 2) return $("f-err").textContent = T().eName;
+    if(wa.replace(/\D/g,"").length < 9) return $("f-err").textContent = T().eWa;
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return $("f-err").textContent = T().eEmail;
+    lead = { name, wa, email };
+    step++; render();
+  };
+}
+
+function score(){
+  const s = {}, m = {};
+  QUESTIONS.filter(q => q.pillar).forEach(q => {
+    s[q.pillar] = (s[q.pillar]||0) + q.a[answers[q.id]][1];
+    m[q.pillar] = (m[q.pillar]||0) + 3;
+  });
+  const pct = {}; Object.keys(PILLARS).forEach(p => pct[p] = Math.round(s[p] / m[p] * 100));
+  const weakest = Object.keys(pct).sort((a,b) => pct[a] - pct[b])[0];
+  const overall = Math.round(Object.values(pct).reduce((a,b)=>a+b,0) / 3);
+  return { pct, weakest, overall };
+}
+const colorFor = v => v >= 67 ? "#1f9d6b" : v >= 34 ? "#e9a514" : "#e2412b";
+
+function qualifies(){
+  // hot lead = wants to start within a month, commitment 7+, open to investing
+  return answers.start <= 1 && answers.commit >= 7 && answers.invest <= 1;
+}
+
+// answers are always saved in English, so your Sheet and Calendly stay in one language
+function answerEN(id){ const q = QUESTIONS.find(x => x.id === id); const v = answers[id]; if(q.type === "scale") return v + "/10"; const a = q.a[v]; return (Array.isArray(a) ? a[0] : a).en; }
+
+function renderResult(){
+  const { pct, weakest, overall } = score();
+  const t = T(), hot = qualifies(), allStrong = pct[weakest] >= 67, P = pname(weakest);
+  const first = lead.name.split(" ")[0];
+
+  if(!leadSent){
+    leadSent = true;
+    const row = { name:lead.name, whatsapp:lead.wa, email:lead.email, weakest:PILLARS[weakest].name.en, overall,
+      nutritionPct:pct.nutrition, exercisePct:pct.exercise, mindsetPct:pct.mindset, hot: hot ? "YES" : "no" };
+    QUESTIONS.forEach(q => row[q.id] = answerEN(q.id));
+    send("lead", row);
+    $("app").scrollTop = 0;
+  }
+  const summary = `Quiz (${LANG.toUpperCase()}): goal ${answerEN("goal")} | weakest: ${PILLARS[weakest].name.en} | N ${pct.nutrition}% E ${pct.exercise}% M ${pct.mindset}% | start: ${answerEN("start")} | commitment ${answers.commit}/10 | invest: ${answerEN("invest")} | WhatsApp ${lead.wa}`;
+
+  const rootsHTML = ROOTS[weakest].map((r,i) =>
+    i === 0 ? `<li><i>🔎</i><span>${L(r)}</span></li>` : `<li class="locked"><i>🔒</i><span>${L(r)}</span></li>`).join("");
+
+  const bookBlock = hot ? `
+    <div class="r-card" id="book">
+      <h3 class="display" style="font-size:26px">${t.bookH(first)}</h3>
+      <p>${t.bookP}</p>
+      <div id="cal"></div>
+    </div>` : `
+    <div class="r-card" id="book">
+      <h3>${t.tipH}</h3>
+      <div class="tip">${L(TIPS[weakest])}</div>
+      <p style="margin:18px 0 14px">${t.softP}</p>
+      <button class="btn" id="open-cal" style="width:100%">${t.bookBtn}</button>
+      <div id="cal" style="display:none"></div>
+    </div>`;
+
+  const order = ["nutrition","exercise","mindset"];
+  $("stage").innerHTML = `<div class="fade">
+    <div class="qtag">${t.rTag}</div>
+    <h2 class="display qtitle">${allStrong ? t.rStrong(first) : t.rWeak(first, P)}</h2>
+    <div class="r-card">
+      <div class="tri-wrap">${triSVG(order.map(p => `${pname(p).toUpperCase()} ${pct[p]}%`), order.map(p => colorFor(pct[p])), order.map(p => p === weakest ? 16 : 9), null, allStrong ? -1 : order.indexOf(weakest))}</div>
+      <div class="bars">${order.map(p => `<div><div class="bar-top"><span>${PILLARS[p].emoji} ${pname(p)}</span><span>${pct[p]}%</span></div><div class="bar"><span style="background:${colorFor(pct[p])}" data-w="${pct[p]}"></span></div></div>`).join("")}</div>
+      <div class="weak-box">${allStrong ? t.boxStrong : t.boxWeak(P.toLowerCase())}</div>
+    </div>
+    <div class="r-card">
+      <h3>${allStrong ? t.rootsHStrong : t.rootsH(P.toLowerCase())}</h3>
+      <p class="small">${t.rootsSub}</p>
+      <ul class="roots">${rootsHTML}</ul>
+    </div>
+    ${bookBlock}
+    <p class="small" style="text-align:center;margin-top:10px">${t.disclaimer}</p>
+  </div>`;
+
+  requestAnimationFrame(() => setTimeout(() => document.querySelectorAll(".bar span").forEach(b => b.style.width = b.dataset.w + "%"), 60));
+
+  const showCal = () => {
+    const el = $("cal"); el.style.display = "block"; calShown = true;
+    const go = () => Calendly.initInlineWidget({
+      url: CONFIG.calendly + "?hide_gdpr_banner=1&primary_color=ff5a36",
+      parentElement: el,
+      prefill: { name: lead.name, email: lead.email, customAnswers: { a1: summary } },
+      utm: { utmSource: SRC, utmMedium: "quiz", utmContent: weakest }
+    });
+    if(window.Calendly) go(); else { const iv = setInterval(() => { if(window.Calendly){ clearInterval(iv); go(); } }, 200); }
+  };
+  if(hot || calShown) { if(!hot) $("open-cal").remove(); showCal(); }
+  else $("open-cal").onclick = () => { $("open-cal").remove(); showCal(); send("book_click", { name:lead.name, whatsapp:lead.wa }); };
+}
+
+// Calendly tells us when a booking is made
+window.addEventListener("message", e => {
+  if(e.origin !== "https://calendly.com" || !e.data || e.data.event !== "calendly.event_scheduled") return;
+  send("booked", { name:lead.name, whatsapp:lead.wa, email:lead.email });
+  $("book").innerHTML = `<div class="booked"><div class="big">🎉</div><h3 class="display" style="font-size:28px;margin:8px 0">${T().bookedH(lead.name.split(" ")[0])}</h3><p>${T().bookedP}</p></div>`;
+});
+
+applyLang();
+</script>
+</body>
+</html>
