@@ -867,9 +867,10 @@ function renderResult(){
   const showCal = () => {
     const el = $("cal"); el.style.display = "block"; calShown = true;
     const go = () => Calendly.initInlineWidget({
-      url: CONFIG.calendly + "?hide_gdpr_banner=1&primary_color=e30613",
+      // details go in the link itself: Calendly's own "prefill" option arrives too early and the form misses it
+      url: CONFIG.calendly + "?" + Object.entries({ hide_gdpr_banner: 1, primary_color: "e30613", name: lead.name, email: lead.email, a1: summary })
+             .map(([k,v]) => k + "=" + encodeURIComponent(v)).join("&"),
       parentElement: el,
-      prefill: { name: lead.name, email: lead.email, customAnswers: { a1: summary } },
       utm: { utmSource: SRC, utmMedium: "quiz", utmContent: weakest }
     });
     if(window.Calendly) go(); else { const iv = setInterval(() => { if(window.Calendly){ clearInterval(iv); go(); } }, 200); }
