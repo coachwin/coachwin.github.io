@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#16201b; --ink2:#4a5650; --bg:#faf7f2; --card:#ffffff; --line:#e7e1d7;
-  --accent:#ff5a36; --accent-ink:#ffffff; --good:#1f9d6b; --mid:#e9a514; --bad:#e2412b;
-  --dark:#12201a; --tint:#fff1ec;
+  --ink:#111111; --ink2:#555555; --bg:#f6f6f6; --card:#ffffff; --line:#e6e6e6;
+  --accent:#e30613; --accent-ink:#ffffff; --good:#1f9d6b; --mid:#f2b600; --bad:#e30613;
+  --dark:#0b0b0b; --tint:#fdecee; --yellow:#ffd200;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -20,7 +20,7 @@ body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink
 img{max-width:100%;display:block}
 .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
 .display{font-family:"Bricolage Grotesque",Inter,sans-serif;font-weight:800;letter-spacing:-.02em;line-height:1.05}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:16px 28px;font:700 17px Inter,sans-serif;cursor:pointer;text-decoration:none;box-shadow:0 8px 24px -8px rgba(255,90,54,.6);transition:transform .15s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:16px 28px;font:700 17px Inter,sans-serif;cursor:pointer;text-decoration:none;box-shadow:0 8px 24px -8px rgba(227,6,19,.45);transition:transform .15s}
 .btn:hover{transform:translateY(-2px)}
 .btn.ghost{background:transparent;color:var(--ink);box-shadow:none;border:2px solid var(--ink)}
 .eyebrow{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent)}
@@ -38,16 +38,19 @@ h2.display{font-size:clamp(30px,5vw,46px);margin:10px 0 16px}
 .nav{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:48px}
 .nav-r{display:flex;align-items:center;gap:18px}
 .brand{font:800 20px "Bricolage Grotesque",sans-serif}
-.brand span{color:var(--accent)}
+.brand span{color:var(--yellow)}
 .nav a{color:#fff;font-weight:600;text-decoration:none;font-size:15px;opacity:.85}
 .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
 .hero h1{font-size:clamp(40px,7vw,72px);margin:14px 0 18px}
-.hero h1 em{font-style:normal;color:var(--accent)}
-.hero p{font-size:19px;color:#c9d3ce;max-width:520px;margin-bottom:28px}
-.ticks{list-style:none;margin-top:22px;display:grid;gap:8px;color:#c9d3ce;font-size:15px}
-.ticks li::before{content:"✓";color:var(--accent);font-weight:800;margin-right:10px}
-.hero-photo{aspect-ratio:4/5;border-radius:24px;background:#22342b center/cover;position:relative;overflow:hidden}
-.ph{display:flex;align-items:center;justify-content:center;text-align:center;color:#8aa197;font-size:14px;padding:20px;border:2px dashed #3a5146;border-radius:24px;height:100%}
+.hero h1 em{font-style:normal;color:var(--yellow)}
+.hero p{font-size:19px;color:#d6d6d6;max-width:520px;margin-bottom:28px}
+.ticks{list-style:none;margin-top:22px;display:grid;gap:8px;color:#d6d6d6;font-size:15px}
+.ticks li::before{content:"✓";color:var(--yellow);font-weight:800;margin-right:10px}
+.hero .eyebrow{color:var(--yellow)}
+.hero{border-bottom:6px solid var(--yellow)}
+.final{border-top:6px solid var(--accent)}
+.hero-photo{aspect-ratio:4/5;border-radius:24px;background:#1c1c1c center/cover;position:relative;overflow:hidden}
+.ph{display:flex;align-items:center;justify-content:center;text-align:center;color:#8a8a8a;font-size:14px;padding:20px;border:2px dashed #3a3a3a;border-radius:24px;height:100%}
 
 /* triangle explainer */
 .tri-explain{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
@@ -61,12 +64,12 @@ h2.display{font-size:clamp(30px,5vw,46px);margin:10px 0 16px}
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
 .gallery figure{border-radius:18px;overflow:hidden;background:var(--bg);aspect-ratio:4/5;border:1px solid var(--line)}
 .gallery img{width:100%;height:100%;object-fit:cover}
-.gallery .ph{border-color:var(--line);color:#9a958c;border-radius:18px}
+.gallery .ph{border-color:var(--line);color:#999999;border-radius:18px}
 
 /* about */
 .about{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
 .ba{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.ba figure{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:3/4;background:#e9e3d8}
+.ba figure{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:3/4;background:#eeeeee}
 .ba img{width:100%;height:100%;object-fit:cover}
 .ba figcaption{position:absolute;left:10px;bottom:10px;background:var(--ink);color:#fff;font:800 13px Inter,sans-serif;letter-spacing:.1em;padding:6px 10px;border-radius:8px}
 .ba figcaption.after{background:var(--accent)}
@@ -87,10 +90,10 @@ details[open] summary::after{content:"−"}
 details p{color:var(--ink2);margin-top:10px}
 
 .final{background:var(--dark);color:#fff;text-align:center}
-.final p{color:#c9d3ce;margin:0 auto 28px;max-width:520px;font-size:18px}
-footer{background:var(--dark);color:#7f9188;text-align:center;font-size:13px;padding:0 20px 32px}
+.final p{color:#d6d6d6;margin:0 auto 28px;max-width:520px;font-size:18px}
+footer{background:var(--dark);color:#8a8a8a;text-align:center;font-size:13px;padding:0 20px 32px}
 .social{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
-.social a{display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font:600 15px Inter,sans-serif;border:1.5px solid #3a5146;border-radius:999px;padding:10px 18px}
+.social a{display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font:600 15px Inter,sans-serif;border:1.5px solid #3a3a3a;border-radius:999px;padding:10px 18px}
 .social a:hover{border-color:var(--accent);color:var(--accent)}
 
 /* quiz overlay */
@@ -110,6 +113,12 @@ footer{background:var(--dark);color:#7f9188;text-align:center;font-size:13px;pad
 .opt{text-align:left;background:var(--card);border:2px solid var(--line);border-radius:16px;padding:18px 20px;font:500 17px Inter,sans-serif;color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s}
 .opt:hover{border-color:var(--accent)}
 .opt.sel{border-color:var(--accent);background:var(--tint)}
+.opt.chk{display:flex;align-items:center;gap:12px;padding:14px 18px}
+.opt.chk::before{content:"";flex:none;width:20px;height:20px;border:2px solid var(--line);border-radius:6px;background:#fff}
+.opt.chk.sel::before{background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12l5 5 9-10' fill='none' stroke='white' stroke-width='3'/%3E%3C/svg%3E") center/16px no-repeat;border-color:var(--accent)}
+.grp{font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:.08em;margin:18px 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.tag-chip{background:var(--tint);border:1px solid #f6c3c8;color:var(--ink);font-size:14px;font-weight:600;padding:7px 12px;border-radius:999px}
 .scale{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
 .scale .opt{padding:16px 0;text-align:center;font-weight:700}
 .scale-lbl{display:flex;justify-content:space-between;font-size:13px;color:var(--ink2);margin-top:8px}
@@ -135,7 +144,7 @@ footer{background:var(--dark);color:#7f9188;text-align:center;font-size:13px;pad
 .roots li{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:var(--bg)}
 .roots li.locked span{filter:blur(5px);user-select:none}
 .roots li i{font-style:normal;flex:none}
-.tip{background:#eef8f3;border-left:4px solid var(--good);border-radius:10px;padding:14px 16px}
+.tip{background:#fff8d6;border-left:4px solid var(--yellow);border-radius:10px;padding:14px 16px}
 #cal{min-width:280px;height:700px;border-radius:16px;overflow:hidden;margin-top:10px}
 .booked{text-align:center;padding:30px 10px}
 .booked .big{font-size:52px}
@@ -271,7 +280,7 @@ footer{background:var(--dark);color:#7f9188;text-align:center;font-size:13px;pad
    1. EDIT THESE SETTINGS
    ===================================================== */
 const CONFIG = {
-  defaultLang: "ms",                       // "ms" = Bahasa Melayu first, "en" = English first. A link with ?lang=en or ?lang=ms overrides this.
+  defaultLang: "en",                       // "ms" = Bahasa Melayu first, "en" = English first. A link with ?lang=en or ?lang=ms overrides this.
   brand: "Coach<span>Win</span>",           // logo text (the <span> part shows in orange)
   coachName: { en:"Hi, I'm Coach Win", ms:"Hai, saya Coach Win" },
   // your results, shown under your before/after photos
@@ -301,7 +310,7 @@ const CONFIG = {
     ]
   },
   calendly: "https://calendly.com/coachwin_/free_consult",
-  sheetUrl: "https://script.google.com/macros/s/AKfycbyqOABqtkO-yPog_dFs5zDdUbPLC7xRf9DKAmQ2VX2q6BUnMG3gV_tEvU4DFgeYXkjb/exec",   // Google Sheet lead tracker (see README)
+  sheetUrl: location.hostname === "localhost" ? "" : "https://script.google.com/macros/s/AKfycbyqOABqtkO-yPog_dFs5zDdUbPLC7xRf9DKAmQ2VX2q6BUnMG3gV_tEvU4DFgeYXkjb/exec",   // Google Sheet lead tracker (see README)
   coachPhoto: "img/coach.jpg",
   // client result posters in img/results/01.jpg, 02.jpg … (exported from Canva). To add one, save it as the next number and raise this count.
   resultsCount: 43,
@@ -317,7 +326,7 @@ const TEXT = {
     heroH:"Why can't you <em>lose weight?</em>",
     heroP:"Answer a few quick questions. See which side of your <b>Weight Loss Triangle</b> is holding you back, then book a free call to find the root cause.",
     start:"Start the quiz →", take:"Take the quiz →",
-    tick1:"Your score on nutrition, exercise and mindset", tick2:"Your weakest side, and the first thing to fix", tick3:"No diet pills, no starving",
+    tick1:"Your score on nutrition, workout and mindset", tick2:"Your weakest side, and the first thing to fix", tick3:"No diet pills, no starving",
     triEyebrow:"The Weight Loss Triangle", triH:"Weight loss stalls when one side is weak.",
     triP:"Most people try to fix everything at once and burn out. The quiz shows which side to fix first.",
     pcNt:"What, when and how much you eat and drink.", pcEt:"Your workouts, and how much you move during the day.", pcMt:"Sleep, stress, emotional eating, and staying consistent.",
@@ -326,17 +335,22 @@ const TEXT = {
     resP:"Results from clients of the <b>#WeDoTransformations</b> coaching team, the system I coach with. Men and women, all ages, every background.",
     resNote:"Results shown are from the WDT coaching team. Results are not typical; individual results vary and depend on consistency.",
     resMore:n=>`See ${n} more results`, resAlt:"Client before and after result",
-    aboutEyebrow:"My story", before:"BEFORE", after:"AFTER", faqH:"Questions",
+    aboutEyebrow:"My story", before:"BEFORE", after:"AFTER", faqH:"Frequently asked questions",
     faq:[
       ["Is the quiz really free?","Yes. The quiz and the consultation call are both free. On the call we look at your results together and work out what's really stopping your progress."],
-      ["What happens on the call?","It's a 1-to-1 video or phone call. We go through your quiz answers, find the root cause of your weight issue, and I explain how my program would fix it. If it isn't a fit, I'll tell you."],
+      ["What happens on the call?","It's a one-on-one WhatsApp audio call of about 30 minutes. I'll go through your eating habits, your lifestyle and the other factors behind your weight to find the root cause.<br><br>If I believe I can help, I'll walk you through how my program works. If I don't, I'll point you in the right direction. The call is also for me to make sure we're the right fit: I only take on clients I'm confident I can get results for."],
+      ["How much does the program cost?","It depends on your goal and how much support you need, so I'll recommend the right option for you on the call. There's no obligation to join."],
+      ["How fast will I see results?","Most clients lose 1 to 4 kg a month, depending on their starting point and how consistent they are. Many notice more energy and fewer cravings within the first few weeks."],
+      ["I've tried many diets and failed. Why would this be different?","Most diets fail because they give everyone the same rules and ignore why you gained the weight. We start by finding your root cause, then build a plan around your schedule, your food and your lifestyle, and I check in with you so you're not doing it alone."],
+      ["I'm very busy. Can I still do this?","Yes. Most of my clients are working professionals. Your plan fits around your working hours, and workouts can be as short as 20 to 30 minutes."],
       ["Do I need to go to the gym?","No. Plans can be done at home, at the gym, or a mix of both, depending on your schedule."],
       ["Do I have to stop eating rice or nasi lemak?","No. You'll learn to fit the food you love into your plan, rather than cutting it out and then bingeing."]
     ],
     finalH:"Find your weak side in 2 minutes.", finalP:"Free. No signup to start. Your result is shown right away.",
     footer:"This quiz is for general education, not medical advice.",
     back:"← Back", close:"Close ✕", yourResult:"Your result",
-    scaleLo:"Not really", scaleHi:"Totally committed",
+    next:"Next →", toldH:"What you told me you struggle with",
+    toldP:"These are usually symptoms. On the call we find what's causing them, so you're not fighting them with willpower alone.",
     cTag:"Your result is ready", cH:"Where should I send your result?", cSub:"You'll see your result straight away on the next screen.",
     cName:"Name", cWa:"WhatsApp number", cEmail:"Email", cGo:"Show my result →",
     cPrivacy:"I'll only use your details to follow up about your result. No spam.",
@@ -371,17 +385,22 @@ const TEXT = {
     resP:"Hasil klien pasukan coaching <b>#WeDoTransformations</b>, sistem yang saya gunakan. Lelaki dan wanita, pelbagai umur dan latar belakang.",
     resNote:"Hasil yang ditunjukkan adalah daripada pasukan coaching WDT. Hasil bukan tipikal; berbeza bagi setiap orang dan bergantung pada konsistensi.",
     resMore:n=>`Lihat ${n} lagi hasil`, resAlt:"Hasil sebelum dan selepas klien",
-    aboutEyebrow:"Kisah saya", before:"SEBELUM", after:"SELEPAS", faqH:"Soalan lazim",
+    aboutEyebrow:"Kisah saya", before:"SEBELUM", after:"SELEPAS", faqH:"Soalan yang kerap ditanya",
     faq:[
       ["Betul ke kuiz ini percuma?","Ya. Kuiz dan panggilan konsultasi kedua-duanya percuma. Dalam panggilan itu kita semak keputusan anda bersama dan cari apa yang sebenarnya menghalang kemajuan anda."],
-      ["Apa yang berlaku dalam panggilan?","Ia panggilan video atau telefon 1-dengan-1. Kita semak jawapan kuiz anda, cari punca sebenar masalah berat anda, dan saya terangkan bagaimana program saya boleh baikinya. Kalau tak sesuai, saya akan beritahu."],
+      ["Apa yang berlaku dalam panggilan?","Ia panggilan audio WhatsApp 1-dengan-1, lebih kurang 30 minit. Saya akan semak tabiat makan, gaya hidup dan faktor-faktor lain di sebalik berat anda untuk cari punca sebenar.<br><br>Kalau saya yakin saya boleh bantu, saya akan terangkan bagaimana program saya berfungsi. Kalau tidak, saya akan tunjukkan arah yang betul. Panggilan ini juga untuk saya pastikan kita sesuai bekerjasama: saya hanya ambil klien yang saya yakin boleh capai hasil."],
+      ["Berapa harga program?","Ia bergantung pada matlamat anda dan berapa banyak sokongan yang anda perlukan, jadi saya akan cadangkan pilihan yang sesuai untuk anda dalam panggilan. Tiada paksaan untuk sertai."],
+      ["Berapa cepat saya akan nampak hasil?","Kebanyakan klien turun 1 hingga 4 kg sebulan, bergantung pada titik permulaan dan konsistensi mereka. Ramai rasa lebih bertenaga dan kurang mengidam dalam beberapa minggu pertama."],
+      ["Saya dah cuba banyak diet dan gagal. Apa bezanya kali ini?","Kebanyakan diet gagal sebab semua orang diberi peraturan yang sama, tanpa ambil kira kenapa berat anda naik. Kita mula dengan cari punca sebenar, kemudian bina pelan ikut jadual, makanan dan gaya hidup anda, dan saya akan pantau anda supaya anda tak buat seorang diri."],
+      ["Saya sangat sibuk. Boleh ke saya buat?","Boleh. Kebanyakan klien saya ialah golongan profesional yang bekerja. Pelan disusun ikut waktu kerja anda, dan senaman boleh sesingkat 20 hingga 30 minit."],
       ["Perlu ke pergi gim?","Tidak. Pelan boleh dibuat di rumah, di gim, atau kedua-duanya, ikut jadual anda."],
       ["Perlu ke berhenti makan nasi atau nasi lemak?","Tidak. Anda akan belajar masukkan makanan kegemaran ke dalam pelan, bukan buang terus lepas tu makan berlebihan."]
     ],
     finalH:"Cari bahagian lemah anda dalam 2 minit.", finalP:"Percuma. Tak perlu daftar untuk mula. Keputusan terus keluar.",
     footer:"Kuiz ini untuk pendidikan umum, bukan nasihat perubatan.",
     back:"← Kembali", close:"Tutup ✕", yourResult:"Keputusan anda",
-    scaleLo:"Tak berapa", scaleHi:"Sangat komited",
+    next:"Seterusnya →", toldH:"Apa yang anda kata anda hadapi",
+    toldP:"Ini biasanya cuma simptom. Dalam panggilan kita cari puncanya, supaya anda tak perlu lawan semua ini dengan semangat sahaja.",
     cTag:"Keputusan anda dah siap", cH:"Ke mana saya patut hantar keputusan anda?", cSub:"Keputusan akan terus keluar di skrin seterusnya.",
     cName:"Nama", cWa:"Nombor WhatsApp", cEmail:"E-mel", cGo:"Tunjuk keputusan saya →",
     cPrivacy:"Maklumat anda hanya digunakan untuk susulan tentang keputusan anda. Tiada spam.",
@@ -410,82 +429,106 @@ const TEXT = {
    ===================================================== */
 const PILLARS = {
   nutrition:{ name:{en:"Nutrition",ms:"Pemakanan"}, emoji:"🍽️" },
-  exercise: { name:{en:"Exercise", ms:"Senaman"},   emoji:"🏃" },
+  exercise: { name:{en:"Workout", ms:"Senaman"},   emoji:"🏋️" },
   mindset:  { name:{en:"Mindset",  ms:"Minda"},     emoji:"🧠" }
 };
-const TAGS = { about:{en:"About you",ms:"Tentang anda"}, almost:{en:"Almost done",ms:"Hampir siap"}, last:{en:"Last one",ms:"Soalan terakhir"} };
+const TAGS = { goals:{en:"Your goal",ms:"Matlamat anda"}, lifestyle:{en:"Your lifestyle",ms:"Gaya hidup anda"}, urgency:{en:"Timing",ms:"Masa"}, struggle:{en:"Last one",ms:"Soalan terakhir"} };
 
 const QUESTIONS = [
-  { id:"goal", tag:"about",
-    q:{en:"How much weight do you want to lose?", ms:"Berapa banyak berat yang anda nak turunkan?"},
-    a:[{en:"Under 5 kg",ms:"Kurang 5 kg"},{en:"5 – 10 kg",ms:"5 – 10 kg"},{en:"10 – 15 kg",ms:"10 – 15 kg"},{en:"15 kg or more",ms:"15 kg atau lebih"}] },
-  { id:"why", tag:"about",
-    q:{en:"Why does this matter to you right now?", ms:"Kenapa perkara ini penting untuk anda sekarang?"},
-    a:[{en:"My health. My doctor or my test results worry me",ms:"Kesihatan. Doktor atau keputusan ujian saya membimbangkan"},
-       {en:"I don't feel confident in my body",ms:"Saya tak yakin dengan badan saya"},
+  /* ---- 1. Goals & current situation ---- */
+  { id:"goal", tag:"goals",
+    q:{en:"What's your main fitness goal right now?", ms:"Apa matlamat fitness utama anda sekarang?"},
+    a:[{en:"Lose weight and belly fat",ms:"Turunkan berat dan lemak perut"},
+       {en:"Lose fat and build a toned, fit body",ms:"Buang lemak dan bina badan yang tegap"},
+       {en:"Get healthier and have more energy",ms:"Jadi lebih sihat dan bertenaga"},
+       {en:"Improve a health issue (sugar, cholesterol, blood pressure)",ms:"Baiki masalah kesihatan (gula, kolesterol, darah tinggi)"}] },
+  { id:"tried", tag:"goals", type:"multi", none:4,
+    q:{en:"What have you tried before to reach this goal?", ms:"Apa yang anda pernah cuba untuk capai matlamat ini?"},
+    hint:{en:"Pick all that apply", ms:"Pilih semua yang berkenaan"},
+    a:[{en:"Gym or working out on my own",ms:"Gim atau bersenam sendiri"},
+       {en:"Diets (keto, intermittent fasting, low carb, calorie counting)",ms:"Diet (keto, intermittent fasting, kurang karbo, kira kalori)"},
+       {en:"Slimming products, pills or detox teas",ms:"Produk kurus, pil atau teh detoks"},
+       {en:"A personal trainer or coach",ms:"Personal trainer atau coach"},
+       {en:"Nothing yet. This is my first real try",ms:"Belum lagi. Ini cubaan pertama saya"}] },
+  { id:"why", tag:"goals",
+    q:{en:"Why is it important for you to reach this goal now?", ms:"Kenapa penting untuk anda capai matlamat ini sekarang?"},
+    a:[{en:"My health. Test results or family history worry me",ms:"Kesihatan. Keputusan ujian atau sejarah keluarga membimbangkan saya"},
+       {en:"I want to feel confident in my body again",ms:"Saya nak yakin semula dengan badan saya"},
        {en:"A big event is coming (wedding, trip, raya)",ms:"Ada majlis besar nanti (kahwin, bercuti, raya)"},
+       {en:"I want more energy for work and family",ms:"Saya nak lebih bertenaga untuk kerja dan keluarga"},
        {en:"I'm tired of starting over again and again",ms:"Saya penat asyik mula semula"}] },
 
+  /* ---- 2. Lifestyle & habits ---- */
   { id:"meals", pillar:"nutrition",
-    q:{en:"On a normal workday, how do your meals go?", ms:"Pada hari bekerja biasa, macam mana waktu makan anda?"},
-    a:[[{en:"I skip meals, then eat a lot at night",ms:"Saya skip makan, lepas tu makan banyak waktu malam"},0],
-       [{en:"Mostly mamak or takeaway, whatever is fastest",ms:"Kebanyakannya mamak atau bungkus, apa yang paling cepat"},1],
-       [{en:"Fairly regular, but I don't really plan",ms:"Agak teratur, tapi tak dirancang sangat"},2],
-       [{en:"Planned meals with protein in most of them",ms:"Makan terancang, ada protein dalam kebanyakan hidangan"},3]] },
-  { id:"drinks", pillar:"nutrition",
-    q:{en:"What do you usually drink in a day?", ms:"Apa yang anda biasa minum dalam sehari?"},
-    a:[[{en:"2 or more teh tarik, Milo, boba or soft drinks",ms:"2 atau lebih teh tarik, Milo, boba atau air bergas"},0],
-       [{en:"About 1 sweet drink a day",ms:"Lebih kurang 1 air manis sehari"},1],
-       [{en:"Mostly water, sweet drinks a few times a week",ms:"Kebanyakannya air kosong, air manis beberapa kali seminggu"},2],
-       [{en:"Water, or tea and coffee without sugar",ms:"Air kosong, atau teh dan kopi tanpa gula"},3]] },
-  { id:"night", pillar:"nutrition",
-    q:{en:"How often do you snack or eat after 9 pm?", ms:"Berapa kerap anda snek atau makan selepas jam 9 malam?"},
-    a:[[{en:"Almost every night",ms:"Hampir setiap malam"},0],[{en:"A few times a week",ms:"Beberapa kali seminggu"},1],
-       [{en:"Once in a while",ms:"Sekali-sekala"},2],[{en:"Rarely",ms:"Jarang sekali"},3]] },
-
-  { id:"exercise", pillar:"exercise",
-    q:{en:"How often do you exercise on purpose?", ms:"Berapa kerap anda bersenam dengan sengaja?"},
-    a:[[{en:"Not at all right now",ms:"Langsung tak buat sekarang"},0],
+    q:{en:"Walk me through a normal day of eating. Which sounds most like you?", ms:"Ceritakan hari biasa anda. Waktu makan anda paling macam mana?"},
+    a:[[{en:"I skip breakfast or lunch, then eat a lot at night",ms:"Saya skip sarapan atau tengah hari, lepas tu makan banyak waktu malam"},0],
+       [{en:"Mostly eating out or takeaway, whatever is quickest",ms:"Kebanyakannya makan luar atau bungkus, apa yang paling cepat"},1],
+       [{en:"3 meals a day, but I don't really plan what I eat",ms:"Makan 3 kali sehari, tapi tak rancang sangat apa yang dimakan"},2],
+       [{en:"Planned meals, with protein and vegetables in most of them",ms:"Makan terancang, ada protein dan sayur dalam kebanyakan hidangan"},3]] },
+  { id:"snacks", pillar:"nutrition",
+    q:{en:"How often do you have snacks or sweet drinks (teh tarik, Milo, boba, soft drinks)?", ms:"Berapa kerap anda makan snek atau minum air manis (teh tarik, Milo, boba, air bergas)?"},
+    a:[[{en:"Several times every day",ms:"Beberapa kali setiap hari"},0],
+       [{en:"About once a day",ms:"Lebih kurang sekali sehari"},1],
+       [{en:"A few times a week",ms:"Beberapa kali seminggu"},2],
+       [{en:"Rarely",ms:"Jarang sekali"},3]] },
+  { id:"water", pillar:"nutrition",
+    q:{en:"How much plain water do you drink in a day?", ms:"Berapa banyak air kosong anda minum sehari?"},
+    a:[[{en:"Less than 1 litre (under 4 glasses)",ms:"Kurang 1 liter (kurang 4 gelas)"},0],
+       [{en:"1 to 1.5 litres (4 to 6 glasses)",ms:"1 hingga 1.5 liter (4 hingga 6 gelas)"},1],
+       [{en:"1.5 to 2 litres (6 to 8 glasses)",ms:"1.5 hingga 2 liter (6 hingga 8 gelas)"},2],
+       [{en:"More than 2 litres",ms:"Lebih 2 liter"},3]] },
+  { id:"workout", pillar:"exercise",
+    q:{en:"How often do you work out right now?", ms:"Berapa kerap anda bersenam sekarang?"},
+    a:[[{en:"Not at all",ms:"Langsung tak"},0],
        [{en:"On and off, when I feel motivated",ms:"Kadang-kadang, bila rasa bersemangat"},1],
-       [{en:"1 – 2 times a week",ms:"1 – 2 kali seminggu"},2],
-       [{en:"3+ times a week, including strength training",ms:"3 kali atau lebih seminggu, termasuk latihan kekuatan"},3]] },
-  { id:"steps", pillar:"exercise",
-    q:{en:"Outside of workouts, how active is your day?", ms:"Selain senaman, seaktif mana hari anda?"},
-    a:[[{en:"Desk all day and I drive everywhere",ms:"Duduk di meja sepanjang hari dan memandu ke mana-mana"},0],
-       [{en:"Mostly sitting, a little walking",ms:"Banyak duduk, sedikit berjalan"},1],
-       [{en:"On my feet for part of the day",ms:"Berdiri atau bergerak sebahagian hari"},2],
-       [{en:"Active job, or 8,000+ steps a day",ms:"Kerja aktif, atau 8,000+ langkah sehari"},3]] },
-
+       [{en:"1 to 2 times a week",ms:"1 hingga 2 kali seminggu"},2],
+       [{en:"3 or more times a week",ms:"3 kali atau lebih seminggu"},3]] },
+  { id:"work", tag:"lifestyle",
+    q:{en:"What's your work schedule like?", ms:"Macam mana jadual kerja anda?"},
+    a:[{en:"Office hours (about 9 to 6)",ms:"Waktu pejabat (lebih kurang 9 hingga 6)"},
+       {en:"Long hours or frequent overtime",ms:"Waktu kerja panjang atau kerap OT"},
+       {en:"Shift work or irregular hours",ms:"Kerja syif atau waktu tak tetap"},
+       {en:"Flexible or self-employed",ms:"Fleksibel atau bekerja sendiri"},
+       {en:"Student or not working right now",ms:"Pelajar atau tak bekerja sekarang"}] },
+  { id:"habits", tag:"lifestyle",
+    q:{en:"Do you drink alcohol, smoke or vape?", ms:"Adakah anda minum alkohol, merokok atau vape?"},
+    a:[{en:"None of these",ms:"Tiada"},{en:"Alcohol, now and then",ms:"Alkohol, sekali-sekala"},
+       {en:"I smoke or vape",ms:"Saya merokok atau vape"},{en:"More than one of these",ms:"Lebih daripada satu"}] },
   { id:"sleep", pillar:"mindset",
-    q:{en:"How are your sleep and stress lately?", ms:"Macam mana tidur dan tahap stres anda kebelakangan ini?"},
-    a:[[{en:"Under 6 hours of sleep and very stressed",ms:"Tidur kurang 6 jam dan sangat stres"},0],
-       [{en:"Poor sleep or high stress",ms:"Tidur tak lena atau stres tinggi"},1],
-       [{en:"Okay most nights",ms:"Okey kebanyakan malam"},2],
-       [{en:"7+ hours, stress is under control",ms:"Tidur 7 jam ke atas, stres terkawal"},3]] },
-  { id:"emotional", pillar:"mindset",
-    q:{en:"When you're stressed, tired or bored, what happens?", ms:"Bila anda stres, penat atau bosan, apa yang berlaku?"},
-    a:[[{en:"I eat. Food is my comfort",ms:"Saya makan. Makanan ialah penenang saya"},0],
-       [{en:"I often reach for snacks",ms:"Selalu cari snek"},1],
-       [{en:"Sometimes I snack",ms:"Kadang-kadang saya snek"},2],
-       [{en:"I rarely eat because of emotions",ms:"Jarang makan sebab emosi"},3]] },
-  { id:"past", pillar:"mindset",
-    q:{en:"What happened the last time you tried to lose weight?", ms:"Apa jadi kali terakhir anda cuba turunkan berat?"},
-    a:[[{en:"I lost some, then gained it all back (or more)",ms:"Turun sikit, lepas tu naik balik semua (atau lebih)"},0],
-       [{en:"I gave up within a few weeks",ms:"Berhenti dalam masa beberapa minggu"},1],
-       [{en:"I lost a bit, then got stuck",ms:"Turun sikit, lepas tu tersekat"},2],
-       [{en:"It mostly worked. I want to finish the job",ms:"Kebanyakannya berjaya. Saya nak teruskan sampai capai sasaran"},3]] },
+    q:{en:"How many hours do you usually sleep a night?", ms:"Berapa jam anda biasanya tidur setiap malam?"},
+    a:[[{en:"Less than 5 hours",ms:"Kurang 5 jam"},0],
+       [{en:"5 to 6 hours",ms:"5 hingga 6 jam"},1],
+       [{en:"6 to 7 hours",ms:"6 hingga 7 jam"},2],
+       [{en:"7 hours or more",ms:"7 jam atau lebih"},3]] },
+  { id:"stress", pillar:"mindset", type:"scale",
+    q:{en:"On a scale of 1 to 10, how stressed are you lately?", ms:"Dari 1 hingga 10, seberapa stres anda kebelakangan ini?"},
+    lo:{en:"Very calm",ms:"Sangat tenang"}, hi:{en:"Extremely stressed",ms:"Sangat stres"},
+    score: v => v <= 3 ? 3 : v <= 5 ? 2 : v <= 7 ? 1 : 0 },
 
-  { id:"start", tag:"almost",
-    q:{en:"When would you like to start?", ms:"Bila anda nak mula?"},
-    a:[{en:"Right away",ms:"Sekarang juga"},{en:"Within the next month",ms:"Dalam bulan ini"},
-       {en:"In a few months",ms:"Dalam beberapa bulan lagi"},{en:"I'm just looking for now",ms:"Saya cuma tengok-tengok dulu"}] },
-  { id:"commit", tag:"almost", type:"scale",
-    q:{en:"How committed are you to fixing this, from 1 to 10?", ms:"Dari 1 hingga 10, seberapa komited anda nak selesaikan masalah ini?"} },
-  { id:"invest", tag:"last",
-    q:{en:"If a coach showed you exactly what to fix, would you invest in a program?", ms:"Kalau seorang coach tunjuk apa yang perlu dibaiki, adakah anda sanggup melabur dalam program?"},
-    a:[{en:"Yes, if it fits me",ms:"Ya, kalau sesuai dengan saya"},{en:"Maybe, it depends on the cost",ms:"Mungkin, bergantung pada kos"},
-       {en:"No, I only want free tips",ms:"Tidak, saya cuma nak tip percuma"}] }
+  /* ---- 3. Urgency ---- */
+  { id:"start", tag:"urgency",
+    q:{en:"Is reaching your goal urgent for you, or something you can start any time later?", ms:"Adakah matlamat ini mendesak untuk anda, atau boleh mula bila-bila masa nanti?"},
+    a:[{en:"It's urgent. I want to start right away",ms:"Mendesak. Saya nak mula sekarang juga"},
+       {en:"I'd like to start within the next month",ms:"Saya nak mula dalam bulan ini"},
+       {en:"I can start in a few months",ms:"Boleh mula dalam beberapa bulan lagi"},
+       {en:"No rush. I'm just exploring for now",ms:"Tak tergesa-gesa. Saya cuma tengok-tengok dulu"}] },
+
+  /* ---- 4. Struggles (feeds the triangle) ---- */
+  { id:"struggles", tag:"struggle", type:"multi",
+    q:{en:"What do you usually struggle with in your fat loss journey?", ms:"Apa yang biasanya anda hadapi dalam usaha buang lemak?"},
+    hint:{en:"Pick all that apply", ms:"Pilih semua yang berkenaan"},
+    a:[{p:"nutrition",en:"I stress eat or eat when I'm emotional",ms:"Saya makan bila stres atau ikut emosi"},
+       {p:"nutrition",en:"Sugar cravings",ms:"Selalu mengidam manis"},
+       {p:"nutrition",en:"I don't know what to eat",ms:"Saya tak tahu apa yang patut dimakan"},
+       {p:"exercise",en:"No time to work out",ms:"Tiada masa untuk bersenam"},
+       {p:"exercise",en:"Low energy to work out",ms:"Tak bertenaga untuk bersenam"},
+       {p:"exercise",en:"Not sure which workouts suit me",ms:"Tak pasti senaman apa yang sesuai"},
+       {p:"exercise",en:"Injuries or body pain",ms:"Kecederaan atau sakit badan"},
+       {p:"mindset",en:"Staying consistent",ms:"Susah nak konsisten"},
+       {p:"mindset",en:"I procrastinate and keep delaying",ms:"Suka bertangguh"},
+       {p:"mindset",en:"I need someone to keep me accountable",ms:"Perlukan seseorang untuk pantau saya"}] }
 ];
+
 
 /* what each weak side usually comes from. The first one is shown, the rest are "unlocked" on the call */
 const ROOTS = {
@@ -531,15 +574,15 @@ const pname = p => L(PILLARS[p].name);
 
 function triSVG(labels, colors, widths, center, dashed){
   return `<svg viewBox="0 0 320 300" role="img" aria-label="${labels.join(", ")}">
-    <polygon points="160,24 300,266 20,266" fill="${center ? "#fff" : "#faf7f2"}"/>
+    <polygon points="160,24 300,266 20,266" fill="${center ? "#fff" : "#f6f6f6"}"/>
     <line x1="160" y1="24" x2="20" y2="266" stroke="${colors[0]}" stroke-width="${widths[0]}" stroke-linecap="round" ${dashed===0?'stroke-dasharray="2 22"':''}/>
     <line x1="160" y1="24" x2="300" y2="266" stroke="${colors[1]}" stroke-width="${widths[1]}" stroke-linecap="round" ${dashed===1?'stroke-dasharray="2 22"':''}/>
     <line x1="20" y1="266" x2="300" y2="266" stroke="${colors[2]}" stroke-width="${widths[2]}" stroke-linecap="round" ${dashed===2?'stroke-dasharray="2 22"':''}/>
-    <text x="58" y="138" font-family="Inter" font-weight="700" font-size="14" fill="#16201b" transform="rotate(-60 58 138)" text-anchor="middle">${labels[0]}</text>
-    <text x="262" y="138" font-family="Inter" font-weight="700" font-size="14" fill="#16201b" transform="rotate(60 262 138)" text-anchor="middle">${labels[1]}</text>
-    <text x="160" y="294" font-family="Inter" font-weight="700" font-size="14" fill="#16201b" text-anchor="middle">${labels[2]}</text>
-    ${center ? `<text x="160" y="188" font-family="Bricolage Grotesque,Inter" font-weight="800" font-size="22" fill="#16201b" text-anchor="middle">${center[0]}</text>
-    <text x="160" y="214" font-family="Bricolage Grotesque,Inter" font-weight="800" font-size="22" fill="#16201b" text-anchor="middle">${center[1]}</text>` : ""}
+    <text x="58" y="138" font-family="Inter" font-weight="700" font-size="14" fill="#111111" transform="rotate(-60 58 138)" text-anchor="middle">${labels[0]}</text>
+    <text x="262" y="138" font-family="Inter" font-weight="700" font-size="14" fill="#111111" transform="rotate(60 262 138)" text-anchor="middle">${labels[1]}</text>
+    <text x="160" y="294" font-family="Inter" font-weight="700" font-size="14" fill="#111111" text-anchor="middle">${labels[2]}</text>
+    ${center ? `<text x="160" y="188" font-family="Bricolage Grotesque,Inter" font-weight="800" font-size="22" fill="#111111" text-anchor="middle">${center[0]}</text>
+    <text x="160" y="214" font-family="Bricolage Grotesque,Inter" font-weight="800" font-size="22" fill="#111111" text-anchor="middle">${center[1]}</text>` : ""}
   </svg>`;
 }
 
@@ -551,7 +594,7 @@ function applyLang(){
   document.querySelectorAll("[data-lang]").forEach(b => b.classList.toggle("on", b.dataset.lang === LANG));
   const pc = { pcN:"nutrition", pcE:"exercise", pcM:"mindset" };
   Object.keys(pc).forEach(k => document.querySelector(`[data-t="${k}"]`).innerHTML = `${PILLARS[pc[k]].emoji} ${pname(pc[k])}`);
-  $("tri-demo").innerHTML = triSVG(["nutrition","exercise","mindset"].map(p => pname(p).toUpperCase()), ["#1f9d6b","#e9a514","#ff5a36"], [12,12,12], T().triCenter);
+  $("tri-demo").innerHTML = triSVG(["nutrition","exercise","mindset"].map(p => pname(p).toUpperCase()), ["#ffd200","#e30613","#111111"], [12,12,12], T().triCenter);
   renderGallery();
   $("stats").innerHTML = CONFIG.stats.map(s => `<div class="stat"><b>${s.v}</b><span>${L(s.l)}</span></div>`).join("");
   $("story").innerHTML = L(CONFIG.story).map(p => p.startsWith(">") ? `<blockquote>${p.slice(1)}</blockquote>` : `<p>${p}</p>`).join("");
@@ -614,9 +657,10 @@ function optLabel(a){ return L(Array.isArray(a) ? a[0] : a); }
 function renderQuestion(q){
   const tag = q.pillar ? `${PILLARS[q.pillar].emoji} ${pname(q.pillar)}` : L(TAGS[q.tag]);
   let html = `<div class="fade"><div class="qtag">${tag} · ${step+1}/${TOTAL}</div><h2 class="display qtitle">${L(q.q)}</h2>`;
+  if(q.type === "multi") return renderMulti(q, html);
   if(q.type === "scale"){
     html += `<div class="opts scale">` + Array.from({length:10},(_,i)=>`<button class="opt${answers[q.id]===i+1?" sel":""}" data-v="${i+1}">${i+1}</button>`).join("") +
-            `</div><div class="scale-lbl"><span>${T().scaleLo}</span><span>${T().scaleHi}</span></div>`;
+            `</div><div class="scale-lbl"><span>${L(q.lo)}</span><span>${L(q.hi)}</span></div>`;
   } else {
     html += `<div class="opts">` + q.a.map((a,i)=>`<button class="opt${answers[q.id]===i?" sel":""}" data-v="${i}">${optLabel(a)}</button>`).join("") + `</div>`;
   }
@@ -626,6 +670,37 @@ function renderQuestion(q){
     if(step === Math.floor(QUESTIONS.length/2)) send("halfway", {});
     setTimeout(() => { step++; render(); }, 180);
   });
+}
+
+// "pick all that apply" questions: answers[q.id] is a list of option numbers
+function renderMulti(q, html){
+  const sel = new Set(answers[q.id] || []);
+  const btn = i => `<button class="opt chk${sel.has(i)?" sel":""}" data-v="${i}">${L(q.a[i])}</button>`;
+  const idx = q.a.map((_,i) => i);
+  if(q.a[0].p){
+    // grouped by triangle side
+    html += Object.keys(PILLARS).map(p => `<div class="grp">${PILLARS[p].emoji} ${pname(p)}</div><div class="opts">` +
+      idx.filter(i => q.a[i].p === p).map(btn).join("") + `</div>`).join("");
+  } else {
+    html += `<div class="opts">` + idx.map(btn).join("") + `</div>`;
+  }
+  html += `<p class="small" style="margin-top:14px">${L(q.hint)}</p><button class="btn" id="multi-go" style="width:100%;margin-top:14px">${T().next}</button></div>`;
+  $("stage").innerHTML = html;
+  const sync = () => { $("stage").querySelectorAll(".opt").forEach(b => b.classList.toggle("sel", sel.has(+b.dataset.v))); $("multi-go").disabled = !sel.size; $("multi-go").style.opacity = sel.size ? 1 : .4; };
+  $("stage").querySelectorAll(".opt").forEach(b => b.onclick = () => {
+    const v = +b.dataset.v;
+    if(sel.has(v)) sel.delete(v);
+    else if(q.none === v) { sel.clear(); sel.add(v); }          // "Nothing yet" clears the others
+    else { if(q.none !== undefined) sel.delete(q.none); sel.add(v); }
+    sync();
+  });
+  $("multi-go").onclick = () => {
+    if(!sel.size) return;
+    answers[q.id] = [...sel].sort((a,b)=>a-b);
+    if(step === Math.floor(QUESTIONS.length/2)) send("halfway", {});
+    step++; render();
+  };
+  sync();
 }
 
 function renderContact(){
@@ -657,23 +732,35 @@ function renderContact(){
 function score(){
   const s = {}, m = {};
   QUESTIONS.filter(q => q.pillar).forEach(q => {
-    s[q.pillar] = (s[q.pillar]||0) + q.a[answers[q.id]][1];
+    const pts = q.type === "scale" ? q.score(answers[q.id]) : q.a[answers[q.id]][1];
+    s[q.pillar] = (s[q.pillar]||0) + pts;
     m[q.pillar] = (m[q.pillar]||0) + 3;
+  });
+  // each struggle they ticked counts against that side (worth up to 2 questions' points)
+  const sq = QUESTIONS.find(q => q.id === "struggles");
+  Object.keys(PILLARS).forEach(p => {
+    const n = (answers.struggles || []).filter(i => sq.a[i].p === p).length;
+    s[p] += Math.max(0, 6 - 2 * n); m[p] += 6;
   });
   const pct = {}; Object.keys(PILLARS).forEach(p => pct[p] = Math.round(s[p] / m[p] * 100));
   const weakest = Object.keys(pct).sort((a,b) => pct[a] - pct[b])[0];
   const overall = Math.round(Object.values(pct).reduce((a,b)=>a+b,0) / 3);
   return { pct, weakest, overall };
 }
-const colorFor = v => v >= 67 ? "#1f9d6b" : v >= 34 ? "#e9a514" : "#e2412b";
+const colorFor = v => v >= 67 ? "#1f9d6b" : v >= 34 ? "#f2b600" : "#e30613";
 
 function qualifies(){
-  // hot lead = wants to start within a month, commitment 7+, open to investing
-  return answers.start <= 1 && answers.commit >= 7 && answers.invest <= 1;
+  // hot lead = says it's urgent or wants to start within the next month
+  return answers.start <= 1;
 }
 
 // answers are always saved in English, so your Sheet and Calendly stay in one language
-function answerEN(id){ const q = QUESTIONS.find(x => x.id === id); const v = answers[id]; if(q.type === "scale") return v + "/10"; const a = q.a[v]; return (Array.isArray(a) ? a[0] : a).en; }
+function answerEN(id){
+  const q = QUESTIONS.find(x => x.id === id), v = answers[id];
+  if(q.type === "scale") return v + "/10";
+  if(q.type === "multi") return v.map(i => q.a[i].en).join("; ");
+  const a = q.a[v]; return (Array.isArray(a) ? a[0] : a).en;
+}
 
 function renderResult(){
   const { pct, weakest, overall } = score();
@@ -688,7 +775,9 @@ function renderResult(){
     send("lead", row);
     $("app").scrollTop = 0;
   }
-  const summary = `Quiz (${LANG.toUpperCase()}): goal ${answerEN("goal")} | weakest: ${PILLARS[weakest].name.en} | N ${pct.nutrition}% E ${pct.exercise}% M ${pct.mindset}% | start: ${answerEN("start")} | commitment ${answers.commit}/10 | invest: ${answerEN("invest")} | WhatsApp ${lead.wa}`;
+  const summary = `Quiz (${LANG.toUpperCase()}): goal: ${answerEN("goal")} | weakest: ${PILLARS[weakest].name.en} | Nutrition ${pct.nutrition}% Workout ${pct.exercise}% Mindset ${pct.mindset}% | struggles: ${answerEN("struggles")} | tried: ${answerEN("tried")} | sleep ${answerEN("sleep")}, stress ${answerEN("stress")} | work: ${answerEN("work")} | ${answerEN("habits")} | why now: ${answerEN("why")} | start: ${answerEN("start")} | WhatsApp ${lead.wa}`;
+  const sq = QUESTIONS.find(q => q.id === "struggles");
+  const told = (answers.struggles || []).map(i => `<span class="tag-chip">${PILLARS[sq.a[i].p].emoji} ${L(sq.a[i])}</span>`).join("");
 
   const rootsHTML = ROOTS[weakest].map((r,i) =>
     i === 0 ? `<li><i>🔎</i><span>${L(r)}</span></li>` : `<li class="locked"><i>🔒</i><span>${L(r)}</span></li>`).join("");
@@ -716,6 +805,7 @@ function renderResult(){
       <div class="bars">${order.map(p => `<div><div class="bar-top"><span>${PILLARS[p].emoji} ${pname(p)}</span><span>${pct[p]}%</span></div><div class="bar"><span style="background:${colorFor(pct[p])}" data-w="${pct[p]}"></span></div></div>`).join("")}</div>
       <div class="weak-box">${allStrong ? t.boxStrong : t.boxWeak(P.toLowerCase())}</div>
     </div>
+    ${told ? `<div class="r-card"><h3>${t.toldH}</h3><div class="chips">${told}</div><p class="small" style="margin-top:12px">${t.toldP}</p></div>` : ""}
     <div class="r-card">
       <h3>${allStrong ? t.rootsHStrong : t.rootsH(P.toLowerCase())}</h3>
       <p class="small">${t.rootsSub}</p>
@@ -730,7 +820,7 @@ function renderResult(){
   const showCal = () => {
     const el = $("cal"); el.style.display = "block"; calShown = true;
     const go = () => Calendly.initInlineWidget({
-      url: CONFIG.calendly + "?hide_gdpr_banner=1&primary_color=ff5a36",
+      url: CONFIG.calendly + "?hide_gdpr_banner=1&primary_color=e30613",
       parentElement: el,
       prefill: { name: lead.name, email: lead.email, customAnswers: { a1: summary } },
       utm: { utmSource: SRC, utmMedium: "quiz", utmContent: weakest }
